@@ -1,7 +1,8 @@
 import 'package:dartz/dartz.dart';
 import 'package:equatable/equatable.dart';
 import 'package:flutter/cupertino.dart';
-import 'package:jottr/domain/auth/email_address.dart';
+
+import 'failures.dart';
 
 @immutable
 abstract class ValueObject<T> extends Equatable {

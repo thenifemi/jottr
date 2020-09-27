@@ -1,9 +1,8 @@
 import 'package:dartz/dartz.dart';
-import 'package:flutter/foundation.dart';
-import 'package:freezed_annotation/freezed_annotation.dart';
-import 'package:jottr/domain/core/value_objects.dart';
 
-part 'value_objects.freezed.dart';
+import '../core/failures.dart';
+import '../core/value_objects.dart';
+import '../core/value_validators.dart';
 
 class EmailAddress extends ValueObject<String> {
   final Either<ValueFailure<String>, String> value;
@@ -18,23 +17,15 @@ class EmailAddress extends ValueObject<String> {
   const EmailAddress._(this.value);
 }
 
-Either<ValueFailure<String>, String> validateEmailAddress(String input) {
-  const emailRegex =
-      r"""^[a-zA-Z0-9.a-zA-Z0-9.!#$%&'*+-/=?^_`{|}~]+@[a-zA-Z0-9]+\.[a-zA-Z]+""";
-  if (RegExp(emailRegex).hasMatch(input)) {
-    //Returns input because its valid
-    return right(input);
-  } else
-    return left(ValueFailure.invalidEmail(failedValue: input));
-}
+class Password extends ValueObject<String> {
+  final Either<ValueFailure<String>, String> value;
 
-@freezed
-abstract class ValueFailure<T> with _$ValueFailure<T> {
-  const factory ValueFailure.invalidEmail({
-    @required String failedValue,
-  }) = InvalidEmail<T>;
+  factory Password(String input) {
+    assert(input != null);
+    return Password._(
+      validatePassword(input),
+    );
+  }
 
-  const factory ValueFailure.shortPassword({
-    @required String failedValue,
-  }) = ShortPassword<T>;
+  const Password._(this.value);
 }
