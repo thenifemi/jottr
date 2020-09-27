@@ -4,6 +4,19 @@ import '../core/failures.dart';
 import '../core/value_objects.dart';
 import '../core/value_validators.dart';
 
+class Name extends ValueObject<String> {
+  final Either<ValueFailure<String>, String> value;
+
+  factory Name(String input) {
+    assert(input != null);
+    return Name._(
+      validateName(input),
+    );
+  }
+
+  const Name._(this.value);
+}
+
 class EmailAddress extends ValueObject<String> {
   final Either<ValueFailure<String>, String> value;
 
