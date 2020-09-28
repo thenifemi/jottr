@@ -1,6 +1,7 @@
 import 'package:dartz/dartz.dart';
 import 'package:equatable/equatable.dart';
 import 'package:flutter/cupertino.dart';
+import 'package:jottr/application/core/errors.dart';
 
 import 'failures.dart';
 
@@ -8,6 +9,12 @@ import 'failures.dart';
 abstract class ValueObject<T> extends Equatable {
   const ValueObject();
   Either<ValueFailure<T>, T> get value;
+
+  ///Throws [UnexpectedValueError] containing the [ValueFailure]
+  T getOrCrash() {
+    // id = identity - same as writing (right) => right
+    return value.fold((f) => throw UnexpectedValueError(f), id);
+  }
 
   bool isvalid() => value.isRight();
 

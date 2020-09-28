@@ -29,6 +29,9 @@ dependencies:
   freezed_annotation: ^0.12.0
   freezed: ^0.12.1
   flutter_bloc: ^6.0.5
+  firebase_core: ^0.5.0
+  firebase_auth: ^0.18.0+1
+  google_sign_in: ^4.5.4
 
 dev_dependencies:
   flutter_test:
@@ -65,4 +68,3 @@ flutter:
   #
   # For details regarding fonts from package dependencies,
   # see https://flutter.dev/custom-fonts/#from-packages
-
