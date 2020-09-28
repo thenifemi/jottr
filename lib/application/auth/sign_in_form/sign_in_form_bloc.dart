@@ -20,6 +20,86 @@ class SignInFormBloc extends Bloc<SignInFormEvent, SignInFormState> {
   Stream<SignInFormState> mapEventToState(
     SignInFormEvent event,
   ) async* {
-    // TODO: implement mapEventToState
+    yield* event.map(
+      emailChanged: (e) async* {
+        yield state.copyWith(
+          emailAddress: EmailAddress(e.emailStr),
+          authFailureOrSuccessOption: none(),
+        );
+      },
+      passwordChanged: (e) async* {
+        yield state.copyWith(
+          password: Password(e.passwordStr),
+          authFailureOrSuccessOption: none(),
+        );
+      },
+      registerWithEmailAndPasswordPressed: (e) async* {
+        final isEmailValid = state.emailAddress.isvalid();
+        final isPasswordValid = state.password.isvalid();
+
+        if (isEmailValid && isPasswordValid) {
+          yield state.copyWith(
+            isSubmitting: true,
+            authFailureOrSuccessOption: none(),
+          );
+
+          final failureOrSuccess =
+              await _authFacade.registerWithEmailAndPassword(
+            emailAddress: state.emailAddress,
+            password: state.password,
+          );
+
+          yield state.copyWith(
+            isSubmitting: false,
+            authFailureOrSuccessOption: some(failureOrSuccess),
+          );
+        }
+
+        yield state.copyWith(
+          showErrorMessages: true,
+          authFailureOrSuccessOption: none(),
+        );
+      },
+      signInWithEmailAndPasswordPressed: (e) async* {
+        final isEmailValid = state.emailAddress.isvalid();
+        final isPasswordValid = state.password.isvalid();
+
+        if (isEmailValid && isPasswordValid) {
+          yield state.copyWith(
+            isSubmitting: true,
+            authFailureOrSuccessOption: none(),
+          );
+
+          final failureOrSuccess = await _authFacade.signInWithEmailAndPassword(
+            emailAddress: state.emailAddress,
+            password: state.password,
+          );
+
+          yield state.copyWith(
+            isSubmitting: false,
+            authFailureOrSuccessOption: some(failureOrSuccess),
+          );
+        }
+
+        yield state.copyWith(
+          isSubmitting: false,
+          showErrorMessages: true,
+          authFailureOrSuccessOption: none(),
+        );
+      },
+      signInWithGooglePressed: (e) async* {
+        yield state.copyWith(
+          isSubmitting: true,
+          authFailureOrSuccessOption: none(),
+        );
+
+        final failureOrSuccess = await _authFacade.signInWithGoogle();
+
+        yield state.copyWith(
+          isSubmitting: false,
+          authFailureOrSuccessOption: some(failureOrSuccess),
+        );
+      },
+    );
   }
 }
