@@ -3,10 +3,10 @@ import 'package:firebase_auth/firebase_auth.dart';
 import 'package:flutter/foundation.dart';
 import 'package:flutter/services.dart';
 import 'package:google_sign_in/google_sign_in.dart';
-import 'package:jottr/application/core/errors.dart';
-import 'package:jottr/domain/auth/auth_failure.dart';
-import 'package:jottr/domain/auth/i_auth_facade.dart';
-import 'package:jottr/domain/auth/value_objects.dart';
+
+import '../../domain/auth/auth_failure.dart';
+import '../../domain/auth/i_auth_facade.dart';
+import '../../domain/auth/value_objects.dart';
 
 class FirebaseAuthFacade implements IAuthFacade {
   final FirebaseAuth _firebaseAuth;
