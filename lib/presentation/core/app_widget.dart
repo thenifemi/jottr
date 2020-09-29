@@ -1,8 +1,7 @@
-import 'dart:io';
-
-import 'package:firebase_core/firebase_core.dart';
 import 'package:flutter/material.dart';
-import 'package:jottr/presentation/sign_in/sign_in_screen.dart';
+import 'package:flutter/services.dart';
+
+import '../sign_in/sign_in_screen.dart';
 
 class AppWidget extends StatelessWidget {
   @override
@@ -10,16 +9,21 @@ class AppWidget extends StatelessWidget {
     return MaterialApp(
       debugShowCheckedModeBanner: false,
       title: 'Jottr',
-      home: FutureBuilder(
-        future: Firebase.initializeApp(),
-        builder: (context, snapshot) {
-          if (snapshot.hasError) {
-            return exit(0);
-          }
-
-          return SignInScreen();
-        },
+      theme: ThemeData(
+        primaryColor: Colors.white,
+        accentColor: Colors.white30,
+        inputDecorationTheme: InputDecorationTheme(
+          border: OutlineInputBorder(
+            borderRadius: BorderRadius.circular(10.0),
+          ),
+        ),
       ),
+      home: AnnotatedRegion<SystemUiOverlayStyle>(
+          value: const SystemUiOverlayStyle(
+            statusBarColor: Colors.transparent,
+            statusBarIconBrightness: Brightness.light,
+          ),
+          child: SignInScreen()),
     );
   }
 }
