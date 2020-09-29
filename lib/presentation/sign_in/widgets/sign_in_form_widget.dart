@@ -25,14 +25,14 @@ class SignInFormWidget extends StatelessWidget {
                         style: TextStyle(
                             fontSize: 20.0,
                             fontWeight: FontWeight.bold,
-                            color: Colors.yellow),
+                            color: Colors.white),
                       ),
                       TextSpan(
                         text: " Sign Up",
                         style: TextStyle(
                             fontSize: 45.0,
                             fontWeight: FontWeight.bold,
-                            color: Colors.white),
+                            color: AppColors.primaryOrange),
                       ),
                     ],
                     style: TextStyle(
@@ -41,42 +41,72 @@ class SignInFormWidget extends StatelessWidget {
                         color: AppColors.primarygray),
                   ),
                 ),
+                const SizedBox(height: 10.0),
+                const Text(
+                  "Yunno! Whatever you wanna do..",
+                  style: TextStyle(
+                      fontSize: 20.0,
+                      fontWeight: FontWeight.bold,
+                      color: AppColors.primarygray),
+                ),
                 const SizedBox(height: 40.0),
-                TextFormField(
-                  style: const TextStyle(
-                    color: Colors.white,
-                  ),
-                  decoration: const InputDecoration(
-                    labelText: 'Email',
-                    labelStyle: TextStyle(
-                      color: Colors.white,
-                      fontWeight: FontWeight.w600,
+                Column(
+                  crossAxisAlignment: CrossAxisAlignment.start,
+                  children: [
+                    const Text(
+                      "Email",
+                      style: TextStyle(
+                          fontSize: 14.0, color: AppColors.primarygray),
                     ),
-                    floatingLabelBehavior: FloatingLabelBehavior.never,
-                    fillColor: AppColors.primarygray,
-                    filled: true,
-                  ),
-                  autocorrect: false,
-                  keyboardType: TextInputType.emailAddress,
+                    const SizedBox(height: 5.0),
+                    TextFormField(
+                      style: const TextStyle(
+                        color: Colors.white,
+                      ),
+                      decoration: const InputDecoration(
+                        labelText: 'Your email',
+                        labelStyle: TextStyle(
+                          color: Colors.white,
+                          fontSize: 14.0,
+                        ),
+                        floatingLabelBehavior: FloatingLabelBehavior.never,
+                        fillColor: AppColors.primarygray,
+                        filled: true,
+                      ),
+                      autocorrect: false,
+                      keyboardType: TextInputType.emailAddress,
+                    ),
+                  ],
                 ),
                 const SizedBox(height: 20.0),
-                TextFormField(
-                  style: const TextStyle(
-                    color: Colors.white,
-                  ),
-                  decoration: const InputDecoration(
-                    labelText: 'Password',
-                    labelStyle: TextStyle(
-                      color: Colors.white,
-                      fontWeight: FontWeight.w600,
+                Column(
+                  crossAxisAlignment: CrossAxisAlignment.start,
+                  children: [
+                    const Text(
+                      "Password",
+                      style: TextStyle(
+                          fontSize: 14.0, color: AppColors.primarygray),
                     ),
-                    floatingLabelBehavior: FloatingLabelBehavior.never,
-                    fillColor: AppColors.primarygray,
-                    filled: true,
-                  ),
-                  autocorrect: false,
-                  obscureText: true,
-                  keyboardType: TextInputType.visiblePassword,
+                    const SizedBox(height: 5.0),
+                    TextFormField(
+                      style: const TextStyle(
+                        color: Colors.white,
+                      ),
+                      decoration: const InputDecoration(
+                        labelText: 'Your password',
+                        labelStyle: TextStyle(
+                          color: Colors.white,
+                          fontSize: 14.0,
+                        ),
+                        floatingLabelBehavior: FloatingLabelBehavior.never,
+                        fillColor: AppColors.primarygray,
+                        filled: true,
+                      ),
+                      autocorrect: false,
+                      obscureText: true,
+                      keyboardType: TextInputType.visiblePassword,
+                    ),
+                  ],
                 ),
               ],
             ),
