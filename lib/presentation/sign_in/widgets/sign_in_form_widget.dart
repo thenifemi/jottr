@@ -16,32 +16,6 @@ class SignInFormWidget extends StatelessWidget {
               physics: const BouncingScrollPhysics(),
               children: [
                 const SizedBox(height: 20.0),
-                RichText(
-                  text: const TextSpan(
-                    children: [
-                      TextSpan(text: "Log In "),
-                      TextSpan(
-                        text: "or",
-                        style: TextStyle(
-                            fontSize: 20.0,
-                            fontWeight: FontWeight.bold,
-                            color: Colors.white),
-                      ),
-                      TextSpan(
-                        text: " Sign Up",
-                        style: TextStyle(
-                            fontSize: 45.0,
-                            fontWeight: FontWeight.bold,
-                            color: AppColors.primaryOrange),
-                      ),
-                    ],
-                    style: TextStyle(
-                        fontSize: 40.0,
-                        fontWeight: FontWeight.bold,
-                        color: AppColors.primarygray),
-                  ),
-                ),
-                const SizedBox(height: 10.0),
                 const Text(
                   "Yunno! Whatever you wanna do..",
                   style: TextStyle(
@@ -70,7 +44,7 @@ class SignInFormWidget extends StatelessWidget {
                           fontSize: 14.0,
                         ),
                         floatingLabelBehavior: FloatingLabelBehavior.never,
-                        fillColor: AppColors.primarygray,
+                        fillColor: Colors.white,
                         filled: true,
                       ),
                       autocorrect: false,
@@ -99,7 +73,7 @@ class SignInFormWidget extends StatelessWidget {
                           fontSize: 14.0,
                         ),
                         floatingLabelBehavior: FloatingLabelBehavior.never,
-                        fillColor: AppColors.primarygray,
+                        fillColor: Colors.white,
                         filled: true,
                       ),
                       autocorrect: false,
