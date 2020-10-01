@@ -17,11 +17,29 @@ class SignInFormWidget extends StatelessWidget {
               children: [
                 const SizedBox(height: 20.0),
                 const Text(
-                  "Yunno! Whatever you wanna do..",
+                  "JOTTR.",
                   style: TextStyle(
-                      fontSize: 20.0,
-                      fontWeight: FontWeight.bold,
-                      color: AppColors.primarygray),
+                      fontSize: 45.0,
+                      color: AppColors.primarygray,
+                      fontWeight: FontWeight.bold),
+                ),
+                const SizedBox(height: 40.0),
+                const Text(
+                  "Log into your account!",
+                  style: TextStyle(
+                    fontSize: 16.0,
+                    color: AppColors.primarygray,
+                    fontWeight: FontWeight.w600,
+                  ),
+                ),
+                const SizedBox(height: 5.0),
+                const Text(
+                  "If you dont have an account, Click Signup!",
+                  style: TextStyle(
+                    fontSize: 16.0,
+                    color: AppColors.primaryDark,
+                    fontWeight: FontWeight.w600,
+                  ),
                 ),
                 const SizedBox(height: 40.0),
                 Column(
@@ -30,7 +48,9 @@ class SignInFormWidget extends StatelessWidget {
                     const Text(
                       "Email",
                       style: TextStyle(
-                          fontSize: 14.0, color: AppColors.primarygray),
+                        fontSize: 14.0,
+                        color: AppColors.primarygray,
+                      ),
                     ),
                     const SizedBox(height: 5.0),
                     TextFormField(
