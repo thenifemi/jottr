@@ -104,29 +104,75 @@ class SignInFormWidget extends StatelessWidget {
                     Row(
                       children: [
                         Expanded(
-                          child: RawMaterialButton(
-                            onPressed: () {},
-                            fillColor: AppColors.primaryDark,
-                            child: const Text('LOG IN'),
+                          child: SizedBox(
+                            height: 45.0,
+                            child: RawMaterialButton(
+                              shape: RoundedRectangleBorder(
+                                borderRadius: BorderRadius.circular(10.0),
+                              ),
+                              onPressed: () {},
+                              fillColor: AppColors.primaryDark,
+                              elevation: 0.0,
+                              child: const Text(
+                                'Log In',
+                                style: TextStyle(
+                                  color: Colors.white,
+                                  fontWeight: FontWeight.w600,
+                                ),
+                              ),
+                            ),
                           ),
                         ),
                         const SizedBox(width: 15.0),
                         Expanded(
-                          child: RawMaterialButton(
-                            onPressed: () {},
-                            fillColor: AppColors.primaryDark,
-                            child: const Text('SIGN UP'),
+                          child: SizedBox(
+                            height: 45.0,
+                            child: RawMaterialButton(
+                              shape: RoundedRectangleBorder(
+                                borderRadius: BorderRadius.circular(10.0),
+                              ),
+                              onPressed: () {},
+                              fillColor: AppColors.primaryDark,
+                              elevation: 0.0,
+                              child: const Text(
+                                'Sign Up',
+                                style: TextStyle(
+                                  color: Colors.white,
+                                  fontWeight: FontWeight.w600,
+                                ),
+                              ),
+                            ),
                           ),
                         ),
                       ],
                     ),
-                    const SizedBox(height: 30.0),
+                    const SizedBox(height: 20.0),
                     SizedBox(
                       width: double.infinity,
+                      height: 45.0,
                       child: RawMaterialButton(
+                        shape: RoundedRectangleBorder(
+                          borderRadius: BorderRadius.circular(10.0),
+                        ),
                         onPressed: () {},
-                        fillColor: Colors.blue,
-                        child: const Text('SIGN IN WITH GOOGLE'),
+                        fillColor: Colors.grey[300],
+                        elevation: 0.0,
+                        child: Row(
+                          mainAxisAlignment: MainAxisAlignment.center,
+                          children: [
+                            Image.asset(
+                              'assets/core/logos/google_G_logo.png',
+                              height: 20.0,
+                            ),
+                            const SizedBox(width: 5.0),
+                            const Text(
+                              'SIGN IN WITH GOOGLE',
+                              style: TextStyle(
+                                fontWeight: FontWeight.w600,
+                              ),
+                            ),
+                          ],
+                        ),
                       ),
                     ),
                   ],
