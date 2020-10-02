@@ -14,7 +14,7 @@ class MySnackBar extends StatelessWidget {
   Widget build(BuildContext context) {
     return SnackBar(
       behavior: SnackBarBehavior.floating,
-      duration: Duration(milliseconds: 1000),
+      duration: const Duration(milliseconds: 1000),
       shape: RoundedRectangleBorder(
         borderRadius: BorderRadius.circular(10.0),
       ),
@@ -29,7 +29,7 @@ class MySnackBar extends StatelessWidget {
               value,
               style: const TextStyle(
                 fontSize: 16.0,
-                color: AppColors.primarygray,
+                color: Colors.white,
                 fontWeight: FontWeight.w600,
               ),
             ),

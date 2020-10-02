@@ -1,4 +1,5 @@
-import 'package:dartz/dartz.dart';
+import 'package:flushbar/flushbar.dart';
+import 'package:flushbar/flushbar_helper.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter_bloc/flutter_bloc.dart';
 import 'package:jottr/application/auth/sign_in_form/sign_in_form_bloc.dart';
@@ -12,7 +13,21 @@ class SignInFormWidget extends StatelessWidget {
         state.authFailureOrSuccessOption.fold(
           () {},
           (either) => either.fold(
-            (failure) {},
+            (failure) {
+              Flushbar(
+                message: failure.map(
+                  cancelledByUser: (_) => 'Cancelled',
+                  serverError: (_) => 'Oops! Server error',
+                  emailAlreadyInUse: (_) => 'Email already in use',
+                  invalidEmailAndPasswordCombination: (_) =>
+                      'Invalid email and password combination',
+                ),
+                flushbarStyle: FlushbarStyle.FLOATING,
+                duration: const Duration(seconds: 3),
+                margin: const EdgeInsets.all(15),
+                borderRadius: 8,
+              ).show(context);
+            },
             (_) => {
               //TODO: Navigate
             },
