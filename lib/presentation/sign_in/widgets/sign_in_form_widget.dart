@@ -106,16 +106,28 @@ class SignInFormWidget extends StatelessWidget {
                         Expanded(
                           child: RawMaterialButton(
                             onPressed: () {},
+                            fillColor: AppColors.primaryDark,
                             child: const Text('LOG IN'),
                           ),
                         ),
+                        const SizedBox(width: 15.0),
                         Expanded(
                           child: RawMaterialButton(
                             onPressed: () {},
+                            fillColor: AppColors.primaryDark,
                             child: const Text('SIGN UP'),
                           ),
                         ),
                       ],
+                    ),
+                    const SizedBox(height: 30.0),
+                    SizedBox(
+                      width: double.infinity,
+                      child: RawMaterialButton(
+                        onPressed: () {},
+                        fillColor: Colors.blue,
+                        child: const Text('SIGN IN WITH GOOGLE'),
+                      ),
                     ),
                   ],
                 ),
