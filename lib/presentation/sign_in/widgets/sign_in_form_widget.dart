@@ -1,3 +1,4 @@
+import 'package:dartz/dartz.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter_bloc/flutter_bloc.dart';
 import 'package:jottr/application/auth/sign_in_form/sign_in_form_bloc.dart';
@@ -7,7 +8,17 @@ class SignInFormWidget extends StatelessWidget {
   @override
   Widget build(BuildContext context) {
     return BlocConsumer<SignInFormBloc, SignInFormState>(
-      listener: (BuildContext context, state) {},
+      listener: (BuildContext context, state) {
+        state.authFailureOrSuccessOption.fold(
+          () {},
+          (either) => either.fold(
+            (failure) {},
+            (_) => {
+              //TODO: Navigate
+            },
+          ),
+        );
+      },
       builder: (BuildContext context, state) {
         return Padding(
           padding: const EdgeInsets.symmetric(horizontal: 20.0),
@@ -58,7 +69,7 @@ class SignInFormWidget extends StatelessWidget {
                     const SizedBox(height: 5.0),
                     TextFormField(
                       style: const TextStyle(
-                        color: Colors.white,
+                        color: AppColors.primarygray,
                       ),
                       decoration: const InputDecoration(
                         labelText: 'Your email',
@@ -83,7 +94,7 @@ class SignInFormWidget extends StatelessWidget {
                           .fold(
                             (f) => f.maybeMap(
                               invalidEmail: (_) => 'Invalid Email',
-                              orElse: null,
+                              orElse: () => null,
                             ),
                             (_) => null,
                           ),
@@ -105,7 +116,7 @@ class SignInFormWidget extends StatelessWidget {
                     const SizedBox(height: 5.0),
                     TextFormField(
                       style: const TextStyle(
-                        color: Colors.white,
+                        color: AppColors.primarygray,
                       ),
                       decoration: const InputDecoration(
                         labelText: 'Your password',
@@ -131,7 +142,7 @@ class SignInFormWidget extends StatelessWidget {
                           .fold(
                             (f) => f.maybeMap(
                               shortPassword: (_) => 'Password is too short',
-                              orElse: null,
+                              orElse: () => null,
                             ),
                             (_) => null,
                           ),
@@ -146,7 +157,11 @@ class SignInFormWidget extends StatelessWidget {
                               shape: RoundedRectangleBorder(
                                 borderRadius: BorderRadius.circular(10.0),
                               ),
-                              onPressed: () {},
+                              onPressed: () {
+                                context.bloc<SignInFormBloc>().add(
+                                    const SignInFormEvent
+                                        .signInWithEmailAndPasswordPressed());
+                              },
                               fillColor: AppColors.primaryDark,
                               elevation: 0.0,
                               child: const Text(
@@ -167,7 +182,12 @@ class SignInFormWidget extends StatelessWidget {
                               shape: RoundedRectangleBorder(
                                 borderRadius: BorderRadius.circular(10.0),
                               ),
-                              onPressed: () {},
+                              onPressed: () {
+                                context.bloc<SignInFormBloc>().add(
+                                      const SignInFormEvent
+                                          .registerWithEmailAndPasswordPressed(),
+                                    );
+                              },
                               fillColor: AppColors.primaryDark,
                               elevation: 0.0,
                               child: const Text(
@@ -190,7 +210,10 @@ class SignInFormWidget extends StatelessWidget {
                         shape: RoundedRectangleBorder(
                           borderRadius: BorderRadius.circular(10.0),
                         ),
-                        onPressed: () {},
+                        onPressed: () {
+                          context.bloc<SignInFormBloc>().add(
+                              const SignInFormEvent.signInWithGooglePressed());
+                        },
                         fillColor: Colors.grey[300],
                         elevation: 0.0,
                         child: Row(
