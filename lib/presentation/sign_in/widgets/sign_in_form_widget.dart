@@ -1,9 +1,9 @@
 import 'package:flushbar/flushbar.dart';
-import 'package:flushbar/flushbar_helper.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter_bloc/flutter_bloc.dart';
-import 'package:jottr/application/auth/sign_in_form/sign_in_form_bloc.dart';
-import 'package:jottr/presentation/core/colors.dart';
+
+import '../../../application/auth/sign_in_form/sign_in_form_bloc.dart';
+import '../../core/colors.dart';
 
 class SignInFormWidget extends StatelessWidget {
   @override
