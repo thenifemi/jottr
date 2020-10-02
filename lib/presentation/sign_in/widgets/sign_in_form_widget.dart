@@ -100,15 +100,20 @@ class SignInFormWidget extends StatelessWidget {
                       obscureText: true,
                       keyboardType: TextInputType.visiblePassword,
                     ),
+                    const SizedBox(height: 30.0),
                     Row(
                       children: [
-                        RawMaterialButton(
-                          onPressed: () {},
-                          child: const Text('LOG IN'),
+                        Expanded(
+                          child: RawMaterialButton(
+                            onPressed: () {},
+                            child: const Text('LOG IN'),
+                          ),
                         ),
-                        RawMaterialButton(
-                          onPressed: () {},
-                          child: const Text('SIGN UP'),
+                        Expanded(
+                          child: RawMaterialButton(
+                            onPressed: () {},
+                            child: const Text('SIGN UP'),
+                          ),
                         ),
                       ],
                     ),
