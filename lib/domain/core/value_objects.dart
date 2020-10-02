@@ -21,9 +21,6 @@ abstract class ValueObject<T> extends Equatable {
 
   @override
   List<Object> get props => [value];
-
-  @override
-  bool get stringify => super.stringify;
 }
 
 class UniqueId extends ValueObject<String> {

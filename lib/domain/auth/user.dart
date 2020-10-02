@@ -4,7 +4,7 @@ import 'package:jottr/domain/core/value_objects.dart';
 part 'user.freezed.dart';
 
 @freezed
-abstract class MyUser with _$User {
+abstract class MyUser with _$MyUser {
   const factory MyUser({
     @required UniqueId id,
   }) = _User;

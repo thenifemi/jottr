@@ -1,7 +1,5 @@
 import 'package:flutter/material.dart';
 
-import 'colors.dart';
-
 class MySnackBar extends StatelessWidget {
   final String value;
 

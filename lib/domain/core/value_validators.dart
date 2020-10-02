@@ -16,14 +16,16 @@ Either<ValueFailure<String>, String> validateEmailAddress(String input) {
   if (RegExp(emailRegex).hasMatch(input)) {
     //Returns input because its valid
     return right(input);
-  } else
+  } else {
     return left(ValueFailure.invalidEmail(failedValue: input));
+  }
 }
 
 Either<ValueFailure<String>, String> validatePassword(String input) {
   if (input.length >= 6) {
     //Returns input because its valid
     return right(input);
-  } else
+  } else {
     return left(ValueFailure.shortPassword(failedValue: input));
+  }
 }
