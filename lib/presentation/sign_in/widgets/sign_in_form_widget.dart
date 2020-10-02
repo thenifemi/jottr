@@ -60,7 +60,7 @@ class SignInFormWidget extends StatelessWidget {
                       decoration: const InputDecoration(
                         labelText: 'Your email',
                         labelStyle: TextStyle(
-                          color: Colors.white,
+                          color: AppColors.primarygray,
                           fontSize: 14.0,
                         ),
                         floatingLabelBehavior: FloatingLabelBehavior.never,
@@ -89,7 +89,7 @@ class SignInFormWidget extends StatelessWidget {
                       decoration: const InputDecoration(
                         labelText: 'Your password',
                         labelStyle: TextStyle(
-                          color: Colors.white,
+                          color: AppColors.primarygray,
                           fontSize: 14.0,
                         ),
                         floatingLabelBehavior: FloatingLabelBehavior.never,
@@ -99,6 +99,18 @@ class SignInFormWidget extends StatelessWidget {
                       autocorrect: false,
                       obscureText: true,
                       keyboardType: TextInputType.visiblePassword,
+                    ),
+                    Row(
+                      children: [
+                        RawMaterialButton(
+                          onPressed: () {},
+                          child: const Text('LOG IN'),
+                        ),
+                        RawMaterialButton(
+                          onPressed: () {},
+                          child: const Text('SIGN UP'),
+                        ),
+                      ],
                     ),
                   ],
                 ),
