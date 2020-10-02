@@ -12,6 +12,8 @@ class SignInFormWidget extends StatelessWidget {
         return Padding(
           padding: const EdgeInsets.symmetric(horizontal: 20.0),
           child: Form(
+            // ignore: deprecated_member_use
+            autovalidate: state.showErrorMessages,
             child: ListView(
               physics: const BouncingScrollPhysics(),
               children: [
@@ -70,6 +72,21 @@ class SignInFormWidget extends StatelessWidget {
                       ),
                       autocorrect: false,
                       keyboardType: TextInputType.emailAddress,
+                      onChanged: (value) => context
+                          .bloc<SignInFormBloc>()
+                          .add(SignInFormEvent.emailChanged(value)),
+                      validator: (_) => context
+                          .bloc<SignInFormBloc>()
+                          .state
+                          .emailAddress
+                          .value
+                          .fold(
+                            (f) => f.maybeMap(
+                              invalidEmail: (_) => 'Invalid Email',
+                              orElse: null,
+                            ),
+                            (_) => null,
+                          ),
                     ),
                   ],
                 ),
@@ -103,6 +120,21 @@ class SignInFormWidget extends StatelessWidget {
                       autocorrect: false,
                       obscureText: true,
                       keyboardType: TextInputType.visiblePassword,
+                      onChanged: (value) => context
+                          .bloc<SignInFormBloc>()
+                          .add(SignInFormEvent.passwordChanged(value)),
+                      validator: (_) => context
+                          .bloc<SignInFormBloc>()
+                          .state
+                          .password
+                          .value
+                          .fold(
+                            (f) => f.maybeMap(
+                              shortPassword: (_) => 'Password is too short',
+                              orElse: null,
+                            ),
+                            (_) => null,
+                          ),
                     ),
                     const SizedBox(height: 30.0),
                     Row(
