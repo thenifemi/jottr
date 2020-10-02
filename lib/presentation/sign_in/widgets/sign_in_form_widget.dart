@@ -50,6 +50,7 @@ class SignInFormWidget extends StatelessWidget {
                       style: TextStyle(
                         fontSize: 14.0,
                         color: AppColors.primarygray,
+                        fontWeight: FontWeight.w600,
                       ),
                     ),
                     const SizedBox(height: 5.0),
@@ -79,7 +80,10 @@ class SignInFormWidget extends StatelessWidget {
                     const Text(
                       "Password",
                       style: TextStyle(
-                          fontSize: 14.0, color: AppColors.primarygray),
+                        fontSize: 14.0,
+                        color: AppColors.primarygray,
+                        fontWeight: FontWeight.w600,
+                      ),
                     ),
                     const SizedBox(height: 5.0),
                     TextFormField(
