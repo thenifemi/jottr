@@ -6,8 +6,6 @@ import 'user.dart';
 import 'value_objects.dart';
 
 abstract class IAuthFacade {
-  Future<Option<MyUser>> getSignedInUser();
-
   // [Unit] can be read as void.
   Future<Either<AuthFailure, Unit>> registerWithEmailAndPassword({
     @required EmailAddress emailAddress,
@@ -20,6 +18,8 @@ abstract class IAuthFacade {
   });
 
   Future<Either<AuthFailure, Unit>> signInWithGoogle();
+
+  Future<Option<MyUser>> getSignedInUser();
 
   Future<void> signOut();
 }
