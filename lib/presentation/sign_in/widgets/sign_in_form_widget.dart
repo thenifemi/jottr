@@ -249,6 +249,12 @@ class SignInFormWidget extends StatelessWidget {
                         ),
                       ),
                     ),
+                    const SizedBox(height: 20.0),
+                    if (state.isSubmitting) ...[
+                      const LinearProgressIndicator(
+                        backgroundColor: AppColors.primaryDark,
+                      ),
+                    ]
                   ],
                 ),
               ],
