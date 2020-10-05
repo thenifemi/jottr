@@ -1,6 +1,6 @@
 import 'package:flutter/material.dart';
 import 'package:flutter/services.dart';
-import 'package:jottr/presentation/core/colors.dart';
+import 'package:Jottr/presentation/core/colors.dart';
 
 import '../sign_in/sign_in_screen.dart';
 

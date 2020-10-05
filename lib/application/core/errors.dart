@@ -1,4 +1,4 @@
-import 'package:jottr/domain/core/failures.dart';
+import 'package:Jottr/domain/core/failures.dart';
 
 class UnexpectedValueError extends Error {
   final ValueFailure valueFailure;
