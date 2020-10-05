@@ -8,7 +8,7 @@ import 'package:injectable/injectable.dart';
 import './firebase_user_mapper.dart';
 import '../../domain/auth/auth_failure.dart';
 import '../../domain/auth/i_auth_facade.dart';
-import '../../domain/auth/user.dart';
+import '../../domain/auth/myUser.dart';
 import '../../domain/auth/value_objects.dart';
 
 @LazySingleton(as: IAuthFacade)
@@ -94,14 +94,16 @@ class FirebaseAuthFacade implements IAuthFacade {
   }
 
   @override
-  Future<void> signOut() => Future.wait([
-        _googleSignIn.signOut(),
-        _firebaseAuth.signOut(),
-      ]);
-
-  @override
   Future<Option<MyUser>> getSignedInUser() async {
     final User user = _firebaseAuth.currentUser;
     return some(user.toDomain());
   }
+
+  @override
+  Future<void> signOut() => Future.wait(
+        [
+          _googleSignIn.signOut(),
+          _firebaseAuth.signOut(),
+        ],
+      );
 }
