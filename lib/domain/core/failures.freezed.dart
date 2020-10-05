@@ -14,23 +14,32 @@ class _$ValueFailureTearOff {
   const _$ValueFailureTearOff();
 
 // ignore: unused_element
-  InvalidName<T> invalidName<T>({@required String failedValure}) {
+  InvalidName<T> invalidName<T>({@required T failedValure}) {
     return InvalidName<T>(
       failedValure: failedValure,
     );
   }
 
 // ignore: unused_element
-  InvalidEmail<T> invalidEmail<T>({@required String failedValue}) {
+  InvalidEmail<T> invalidEmail<T>({@required T failedValue}) {
     return InvalidEmail<T>(
       failedValue: failedValue,
     );
   }
 
 // ignore: unused_element
-  ShortPassword<T> shortPassword<T>({@required String failedValue}) {
+  ShortPassword<T> shortPassword<T>({@required T failedValue}) {
     return ShortPassword<T>(
       failedValue: failedValue,
+    );
+  }
+
+// ignore: unused_element
+  ExceedingLength<T> exceedingLength<T>(
+      {@required T failedValue, @required int max}) {
+    return ExceedingLength<T>(
+      failedValue: failedValue,
+      max: max,
     );
   }
 }
@@ -43,15 +52,17 @@ const $ValueFailure = _$ValueFailureTearOff();
 mixin _$ValueFailure<T> {
   @optionalTypeArgs
   Result when<Result extends Object>({
-    @required Result invalidName(String failedValure),
-    @required Result invalidEmail(String failedValue),
-    @required Result shortPassword(String failedValue),
+    @required Result invalidName(T failedValure),
+    @required Result invalidEmail(T failedValue),
+    @required Result shortPassword(T failedValue),
+    @required Result exceedingLength(T failedValue, int max),
   });
   @optionalTypeArgs
   Result maybeWhen<Result extends Object>({
-    Result invalidName(String failedValure),
-    Result invalidEmail(String failedValue),
-    Result shortPassword(String failedValue),
+    Result invalidName(T failedValure),
+    Result invalidEmail(T failedValue),
+    Result shortPassword(T failedValue),
+    Result exceedingLength(T failedValue, int max),
     @required Result orElse(),
   });
   @optionalTypeArgs
@@ -59,12 +70,14 @@ mixin _$ValueFailure<T> {
     @required Result invalidName(InvalidName<T> value),
     @required Result invalidEmail(InvalidEmail<T> value),
     @required Result shortPassword(ShortPassword<T> value),
+    @required Result exceedingLength(ExceedingLength<T> value),
   });
   @optionalTypeArgs
   Result maybeMap<Result extends Object>({
     Result invalidName(InvalidName<T> value),
     Result invalidEmail(InvalidEmail<T> value),
     Result shortPassword(ShortPassword<T> value),
+    Result exceedingLength(ExceedingLength<T> value),
     @required Result orElse(),
   });
 }
@@ -91,7 +104,7 @@ abstract class $InvalidNameCopyWith<T, $Res> {
   factory $InvalidNameCopyWith(
           InvalidName<T> value, $Res Function(InvalidName<T>) then) =
       _$InvalidNameCopyWithImpl<T, $Res>;
-  $Res call({String failedValure});
+  $Res call({T failedValure});
 }
 
 /// @nodoc
@@ -110,9 +123,8 @@ class _$InvalidNameCopyWithImpl<T, $Res>
     Object failedValure = freezed,
   }) {
     return _then(InvalidName<T>(
-      failedValure: failedValure == freezed
-          ? _value.failedValure
-          : failedValure as String,
+      failedValure:
+          failedValure == freezed ? _value.failedValure : failedValure as T,
     ));
   }
 }
@@ -123,7 +135,7 @@ class _$InvalidName<T> with DiagnosticableTreeMixin implements InvalidName<T> {
       : assert(failedValure != null);
 
   @override
-  final String failedValure;
+  final T failedValure;
 
   @override
   String toString({DiagnosticLevel minLevel = DiagnosticLevel.info}) {
@@ -158,22 +170,25 @@ class _$InvalidName<T> with DiagnosticableTreeMixin implements InvalidName<T> {
   @override
   @optionalTypeArgs
   Result when<Result extends Object>({
-    @required Result invalidName(String failedValure),
-    @required Result invalidEmail(String failedValue),
-    @required Result shortPassword(String failedValue),
+    @required Result invalidName(T failedValure),
+    @required Result invalidEmail(T failedValue),
+    @required Result shortPassword(T failedValue),
+    @required Result exceedingLength(T failedValue, int max),
   }) {
     assert(invalidName != null);
     assert(invalidEmail != null);
     assert(shortPassword != null);
+    assert(exceedingLength != null);
     return invalidName(failedValure);
   }
 
   @override
   @optionalTypeArgs
   Result maybeWhen<Result extends Object>({
-    Result invalidName(String failedValure),
-    Result invalidEmail(String failedValue),
-    Result shortPassword(String failedValue),
+    Result invalidName(T failedValure),
+    Result invalidEmail(T failedValue),
+    Result shortPassword(T failedValue),
+    Result exceedingLength(T failedValue, int max),
     @required Result orElse(),
   }) {
     assert(orElse != null);
@@ -189,10 +204,12 @@ class _$InvalidName<T> with DiagnosticableTreeMixin implements InvalidName<T> {
     @required Result invalidName(InvalidName<T> value),
     @required Result invalidEmail(InvalidEmail<T> value),
     @required Result shortPassword(ShortPassword<T> value),
+    @required Result exceedingLength(ExceedingLength<T> value),
   }) {
     assert(invalidName != null);
     assert(invalidEmail != null);
     assert(shortPassword != null);
+    assert(exceedingLength != null);
     return invalidName(this);
   }
 
@@ -202,6 +219,7 @@ class _$InvalidName<T> with DiagnosticableTreeMixin implements InvalidName<T> {
     Result invalidName(InvalidName<T> value),
     Result invalidEmail(InvalidEmail<T> value),
     Result shortPassword(ShortPassword<T> value),
+    Result exceedingLength(ExceedingLength<T> value),
     @required Result orElse(),
   }) {
     assert(orElse != null);
@@ -213,9 +231,9 @@ class _$InvalidName<T> with DiagnosticableTreeMixin implements InvalidName<T> {
 }
 
 abstract class InvalidName<T> implements ValueFailure<T> {
-  const factory InvalidName({@required String failedValure}) = _$InvalidName<T>;
+  const factory InvalidName({@required T failedValure}) = _$InvalidName<T>;
 
-  String get failedValure;
+  T get failedValure;
   $InvalidNameCopyWith<T, InvalidName<T>> get copyWith;
 }
 
@@ -224,7 +242,7 @@ abstract class $InvalidEmailCopyWith<T, $Res> {
   factory $InvalidEmailCopyWith(
           InvalidEmail<T> value, $Res Function(InvalidEmail<T>) then) =
       _$InvalidEmailCopyWithImpl<T, $Res>;
-  $Res call({String failedValue});
+  $Res call({T failedValue});
 }
 
 /// @nodoc
@@ -244,7 +262,7 @@ class _$InvalidEmailCopyWithImpl<T, $Res>
   }) {
     return _then(InvalidEmail<T>(
       failedValue:
-          failedValue == freezed ? _value.failedValue : failedValue as String,
+          failedValue == freezed ? _value.failedValue : failedValue as T,
     ));
   }
 }
@@ -257,7 +275,7 @@ class _$InvalidEmail<T>
       : assert(failedValue != null);
 
   @override
-  final String failedValue;
+  final T failedValue;
 
   @override
   String toString({DiagnosticLevel minLevel = DiagnosticLevel.info}) {
@@ -292,22 +310,25 @@ class _$InvalidEmail<T>
   @override
   @optionalTypeArgs
   Result when<Result extends Object>({
-    @required Result invalidName(String failedValure),
-    @required Result invalidEmail(String failedValue),
-    @required Result shortPassword(String failedValue),
+    @required Result invalidName(T failedValure),
+    @required Result invalidEmail(T failedValue),
+    @required Result shortPassword(T failedValue),
+    @required Result exceedingLength(T failedValue, int max),
   }) {
     assert(invalidName != null);
     assert(invalidEmail != null);
     assert(shortPassword != null);
+    assert(exceedingLength != null);
     return invalidEmail(failedValue);
   }
 
   @override
   @optionalTypeArgs
   Result maybeWhen<Result extends Object>({
-    Result invalidName(String failedValure),
-    Result invalidEmail(String failedValue),
-    Result shortPassword(String failedValue),
+    Result invalidName(T failedValure),
+    Result invalidEmail(T failedValue),
+    Result shortPassword(T failedValue),
+    Result exceedingLength(T failedValue, int max),
     @required Result orElse(),
   }) {
     assert(orElse != null);
@@ -323,10 +344,12 @@ class _$InvalidEmail<T>
     @required Result invalidName(InvalidName<T> value),
     @required Result invalidEmail(InvalidEmail<T> value),
     @required Result shortPassword(ShortPassword<T> value),
+    @required Result exceedingLength(ExceedingLength<T> value),
   }) {
     assert(invalidName != null);
     assert(invalidEmail != null);
     assert(shortPassword != null);
+    assert(exceedingLength != null);
     return invalidEmail(this);
   }
 
@@ -336,6 +359,7 @@ class _$InvalidEmail<T>
     Result invalidName(InvalidName<T> value),
     Result invalidEmail(InvalidEmail<T> value),
     Result shortPassword(ShortPassword<T> value),
+    Result exceedingLength(ExceedingLength<T> value),
     @required Result orElse(),
   }) {
     assert(orElse != null);
@@ -347,10 +371,9 @@ class _$InvalidEmail<T>
 }
 
 abstract class InvalidEmail<T> implements ValueFailure<T> {
-  const factory InvalidEmail({@required String failedValue}) =
-      _$InvalidEmail<T>;
+  const factory InvalidEmail({@required T failedValue}) = _$InvalidEmail<T>;
 
-  String get failedValue;
+  T get failedValue;
   $InvalidEmailCopyWith<T, InvalidEmail<T>> get copyWith;
 }
 
@@ -359,7 +382,7 @@ abstract class $ShortPasswordCopyWith<T, $Res> {
   factory $ShortPasswordCopyWith(
           ShortPassword<T> value, $Res Function(ShortPassword<T>) then) =
       _$ShortPasswordCopyWithImpl<T, $Res>;
-  $Res call({String failedValue});
+  $Res call({T failedValue});
 }
 
 /// @nodoc
@@ -379,7 +402,7 @@ class _$ShortPasswordCopyWithImpl<T, $Res>
   }) {
     return _then(ShortPassword<T>(
       failedValue:
-          failedValue == freezed ? _value.failedValue : failedValue as String,
+          failedValue == freezed ? _value.failedValue : failedValue as T,
     ));
   }
 }
@@ -392,7 +415,7 @@ class _$ShortPassword<T>
       : assert(failedValue != null);
 
   @override
-  final String failedValue;
+  final T failedValue;
 
   @override
   String toString({DiagnosticLevel minLevel = DiagnosticLevel.info}) {
@@ -427,22 +450,25 @@ class _$ShortPassword<T>
   @override
   @optionalTypeArgs
   Result when<Result extends Object>({
-    @required Result invalidName(String failedValure),
-    @required Result invalidEmail(String failedValue),
-    @required Result shortPassword(String failedValue),
+    @required Result invalidName(T failedValure),
+    @required Result invalidEmail(T failedValue),
+    @required Result shortPassword(T failedValue),
+    @required Result exceedingLength(T failedValue, int max),
   }) {
     assert(invalidName != null);
     assert(invalidEmail != null);
     assert(shortPassword != null);
+    assert(exceedingLength != null);
     return shortPassword(failedValue);
   }
 
   @override
   @optionalTypeArgs
   Result maybeWhen<Result extends Object>({
-    Result invalidName(String failedValure),
-    Result invalidEmail(String failedValue),
-    Result shortPassword(String failedValue),
+    Result invalidName(T failedValure),
+    Result invalidEmail(T failedValue),
+    Result shortPassword(T failedValue),
+    Result exceedingLength(T failedValue, int max),
     @required Result orElse(),
   }) {
     assert(orElse != null);
@@ -458,10 +484,12 @@ class _$ShortPassword<T>
     @required Result invalidName(InvalidName<T> value),
     @required Result invalidEmail(InvalidEmail<T> value),
     @required Result shortPassword(ShortPassword<T> value),
+    @required Result exceedingLength(ExceedingLength<T> value),
   }) {
     assert(invalidName != null);
     assert(invalidEmail != null);
     assert(shortPassword != null);
+    assert(exceedingLength != null);
     return shortPassword(this);
   }
 
@@ -471,6 +499,7 @@ class _$ShortPassword<T>
     Result invalidName(InvalidName<T> value),
     Result invalidEmail(InvalidEmail<T> value),
     Result shortPassword(ShortPassword<T> value),
+    Result exceedingLength(ExceedingLength<T> value),
     @required Result orElse(),
   }) {
     assert(orElse != null);
@@ -482,9 +511,160 @@ class _$ShortPassword<T>
 }
 
 abstract class ShortPassword<T> implements ValueFailure<T> {
-  const factory ShortPassword({@required String failedValue}) =
-      _$ShortPassword<T>;
+  const factory ShortPassword({@required T failedValue}) = _$ShortPassword<T>;
 
-  String get failedValue;
+  T get failedValue;
   $ShortPasswordCopyWith<T, ShortPassword<T>> get copyWith;
+}
+
+/// @nodoc
+abstract class $ExceedingLengthCopyWith<T, $Res> {
+  factory $ExceedingLengthCopyWith(
+          ExceedingLength<T> value, $Res Function(ExceedingLength<T>) then) =
+      _$ExceedingLengthCopyWithImpl<T, $Res>;
+  $Res call({T failedValue, int max});
+}
+
+/// @nodoc
+class _$ExceedingLengthCopyWithImpl<T, $Res>
+    extends _$ValueFailureCopyWithImpl<T, $Res>
+    implements $ExceedingLengthCopyWith<T, $Res> {
+  _$ExceedingLengthCopyWithImpl(
+      ExceedingLength<T> _value, $Res Function(ExceedingLength<T>) _then)
+      : super(_value, (v) => _then(v as ExceedingLength<T>));
+
+  @override
+  ExceedingLength<T> get _value => super._value as ExceedingLength<T>;
+
+  @override
+  $Res call({
+    Object failedValue = freezed,
+    Object max = freezed,
+  }) {
+    return _then(ExceedingLength<T>(
+      failedValue:
+          failedValue == freezed ? _value.failedValue : failedValue as T,
+      max: max == freezed ? _value.max : max as int,
+    ));
+  }
+}
+
+/// @nodoc
+class _$ExceedingLength<T>
+    with DiagnosticableTreeMixin
+    implements ExceedingLength<T> {
+  const _$ExceedingLength({@required this.failedValue, @required this.max})
+      : assert(failedValue != null),
+        assert(max != null);
+
+  @override
+  final T failedValue;
+  @override
+  final int max;
+
+  @override
+  String toString({DiagnosticLevel minLevel = DiagnosticLevel.info}) {
+    return 'ValueFailure<$T>.exceedingLength(failedValue: $failedValue, max: $max)';
+  }
+
+  @override
+  void debugFillProperties(DiagnosticPropertiesBuilder properties) {
+    super.debugFillProperties(properties);
+    properties
+      ..add(DiagnosticsProperty('type', 'ValueFailure<$T>.exceedingLength'))
+      ..add(DiagnosticsProperty('failedValue', failedValue))
+      ..add(DiagnosticsProperty('max', max));
+  }
+
+  @override
+  bool operator ==(dynamic other) {
+    return identical(this, other) ||
+        (other is ExceedingLength<T> &&
+            (identical(other.failedValue, failedValue) ||
+                const DeepCollectionEquality()
+                    .equals(other.failedValue, failedValue)) &&
+            (identical(other.max, max) ||
+                const DeepCollectionEquality().equals(other.max, max)));
+  }
+
+  @override
+  int get hashCode =>
+      runtimeType.hashCode ^
+      const DeepCollectionEquality().hash(failedValue) ^
+      const DeepCollectionEquality().hash(max);
+
+  @override
+  $ExceedingLengthCopyWith<T, ExceedingLength<T>> get copyWith =>
+      _$ExceedingLengthCopyWithImpl<T, ExceedingLength<T>>(this, _$identity);
+
+  @override
+  @optionalTypeArgs
+  Result when<Result extends Object>({
+    @required Result invalidName(T failedValure),
+    @required Result invalidEmail(T failedValue),
+    @required Result shortPassword(T failedValue),
+    @required Result exceedingLength(T failedValue, int max),
+  }) {
+    assert(invalidName != null);
+    assert(invalidEmail != null);
+    assert(shortPassword != null);
+    assert(exceedingLength != null);
+    return exceedingLength(failedValue, max);
+  }
+
+  @override
+  @optionalTypeArgs
+  Result maybeWhen<Result extends Object>({
+    Result invalidName(T failedValure),
+    Result invalidEmail(T failedValue),
+    Result shortPassword(T failedValue),
+    Result exceedingLength(T failedValue, int max),
+    @required Result orElse(),
+  }) {
+    assert(orElse != null);
+    if (exceedingLength != null) {
+      return exceedingLength(failedValue, max);
+    }
+    return orElse();
+  }
+
+  @override
+  @optionalTypeArgs
+  Result map<Result extends Object>({
+    @required Result invalidName(InvalidName<T> value),
+    @required Result invalidEmail(InvalidEmail<T> value),
+    @required Result shortPassword(ShortPassword<T> value),
+    @required Result exceedingLength(ExceedingLength<T> value),
+  }) {
+    assert(invalidName != null);
+    assert(invalidEmail != null);
+    assert(shortPassword != null);
+    assert(exceedingLength != null);
+    return exceedingLength(this);
+  }
+
+  @override
+  @optionalTypeArgs
+  Result maybeMap<Result extends Object>({
+    Result invalidName(InvalidName<T> value),
+    Result invalidEmail(InvalidEmail<T> value),
+    Result shortPassword(ShortPassword<T> value),
+    Result exceedingLength(ExceedingLength<T> value),
+    @required Result orElse(),
+  }) {
+    assert(orElse != null);
+    if (exceedingLength != null) {
+      return exceedingLength(this);
+    }
+    return orElse();
+  }
+}
+
+abstract class ExceedingLength<T> implements ValueFailure<T> {
+  const factory ExceedingLength({@required T failedValue, @required int max}) =
+      _$ExceedingLength<T>;
+
+  T get failedValue;
+  int get max;
+  $ExceedingLengthCopyWith<T, ExceedingLength<T>> get copyWith;
 }
