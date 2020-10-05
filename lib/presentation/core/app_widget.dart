@@ -1,31 +1,41 @@
 import 'package:flutter/material.dart';
 import 'package:flutter/services.dart';
-import 'package:Jottr/presentation/core/colors.dart';
+import 'package:flutter_bloc/flutter_bloc.dart';
 
+import '../../application/auth/auth_bloc.dart';
+import '../../injection.dart';
 import '../sign_in/sign_in_screen.dart';
+import 'colors.dart';
 
 class AppWidget extends StatelessWidget {
   @override
   Widget build(BuildContext context) {
-    return MaterialApp(
-      debugShowCheckedModeBanner: false,
-      title: 'Jottr',
-      theme: ThemeData(
-        primaryColor: AppColors.primarySmoke,
-        accentColor: Colors.white30,
-        inputDecorationTheme: InputDecorationTheme(
-          border: OutlineInputBorder(
-            borderRadius: BorderRadius.circular(10.0),
-            borderSide: BorderSide.none,
+    return MultiBlocProvider(
+      providers: [
+        BlocProvider(
+          create: (context) => getIt<AuthBloc>(),
+        ),
+      ],
+      child: MaterialApp(
+        title: 'Jottr',
+        debugShowCheckedModeBanner: false,
+        theme: ThemeData(
+          primaryColor: AppColors.primarySmoke,
+          accentColor: Colors.white30,
+          inputDecorationTheme: InputDecorationTheme(
+            border: OutlineInputBorder(
+              borderRadius: BorderRadius.circular(10.0),
+              borderSide: BorderSide.none,
+            ),
           ),
         ),
+        home: AnnotatedRegion<SystemUiOverlayStyle>(
+            value: const SystemUiOverlayStyle(
+              statusBarColor: Colors.transparent,
+              statusBarIconBrightness: Brightness.dark,
+            ),
+            child: SignInScreen()),
       ),
-      home: AnnotatedRegion<SystemUiOverlayStyle>(
-          value: const SystemUiOverlayStyle(
-            statusBarColor: Colors.transparent,
-            statusBarIconBrightness: Brightness.dark,
-          ),
-          child: SignInScreen()),
     );
   }
 }
