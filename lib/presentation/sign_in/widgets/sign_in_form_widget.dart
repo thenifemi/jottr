@@ -62,7 +62,7 @@ class SignInFormWidget extends StatelessWidget {
                 ),
                 const SizedBox(height: 5.0),
                 const Text(
-                  "If you dont have an account, Click Signup!",
+                  "Don't have an account? Just click Sign Up!",
                   style: TextStyle(
                     fontSize: 16.0,
                     color: AppColors.primaryDark,
