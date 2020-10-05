@@ -1,4 +1,5 @@
 import 'package:Jottr/presentation/splash/splash_screen.dart';
+import 'package:Jottr/presentation/splash/temporary_screen.dart';
 import 'package:auto_route/auto_route_annotations.dart';
 import 'package:Jottr/presentation/sign_in/sign_in_screen.dart';
 
@@ -6,6 +7,7 @@ import 'package:Jottr/presentation/sign_in/sign_in_screen.dart';
   routes: <AutoRoute>[
     CupertinoRoute(page: SplashScreen, initial: true),
     CupertinoRoute(page: SignInScreen),
+    CupertinoRoute(page: TemporaryScreen),
   ],
   generateNavigationHelperExtension: true,
 )
