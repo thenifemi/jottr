@@ -33,15 +33,7 @@ class AppWidget extends StatelessWidget {
           ),
           builder: ExtendedNavigator(
             router: MyRouter(),
-          )
-          // builder: AnnotatedRegion<SystemUiOverlayStyle>(
-          //   value: const SystemUiOverlayStyle(
-          //     statusBarColor: Colors.transparent,
-          //     statusBarIconBrightness: Brightness.dark,
-          //   ),
-          //   child: SignInScreen(),
-          // ),
-          ),
+          )),
     );
   }
 }
