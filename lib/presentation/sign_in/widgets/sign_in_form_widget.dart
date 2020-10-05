@@ -82,37 +82,43 @@ class SignInFormWidget extends StatelessWidget {
                       ),
                     ),
                     const SizedBox(height: 5.0),
-                    TextFormField(
-                      style: const TextStyle(
-                        color: AppColors.primarygray,
-                      ),
-                      decoration: const InputDecoration(
-                        labelText: 'Your email',
-                        labelStyle: TextStyle(
+                    SizedBox(
+                      height: 50.0,
+                      child: TextFormField(
+                        cursorColor: AppColors.primaryDark,
+                        // ignore: avoid_bool_literals_in_conditional_expressions
+                        enabled: state.isSubmitting ? false : true,
+                        style: const TextStyle(
                           color: AppColors.primarygray,
-                          fontSize: 14.0,
                         ),
-                        floatingLabelBehavior: FloatingLabelBehavior.never,
-                        fillColor: Colors.white,
-                        filled: true,
-                      ),
-                      autocorrect: false,
-                      keyboardType: TextInputType.emailAddress,
-                      onChanged: (value) => context
-                          .bloc<SignInFormBloc>()
-                          .add(SignInFormEvent.emailChanged(value)),
-                      validator: (_) => context
-                          .bloc<SignInFormBloc>()
-                          .state
-                          .emailAddress
-                          .value
-                          .fold(
-                            (f) => f.maybeMap(
-                              invalidEmail: (_) => 'Invalid Email',
-                              orElse: () => null,
-                            ),
-                            (_) => null,
+                        decoration: const InputDecoration(
+                          labelText: 'Your email',
+                          labelStyle: TextStyle(
+                            color: AppColors.primarygray,
+                            fontSize: 14.0,
                           ),
+                          floatingLabelBehavior: FloatingLabelBehavior.never,
+                          fillColor: Colors.white,
+                          filled: true,
+                        ),
+                        autocorrect: false,
+                        keyboardType: TextInputType.emailAddress,
+                        onChanged: (value) => context
+                            .bloc<SignInFormBloc>()
+                            .add(SignInFormEvent.emailChanged(value)),
+                        validator: (_) => context
+                            .bloc<SignInFormBloc>()
+                            .state
+                            .emailAddress
+                            .value
+                            .fold(
+                              (f) => f.maybeMap(
+                                invalidEmail: (_) => 'Invalid Email',
+                                orElse: () => null,
+                              ),
+                              (_) => null,
+                            ),
+                      ),
                     ),
                   ],
                 ),
@@ -129,38 +135,44 @@ class SignInFormWidget extends StatelessWidget {
                       ),
                     ),
                     const SizedBox(height: 5.0),
-                    TextFormField(
-                      style: const TextStyle(
-                        color: AppColors.primarygray,
-                      ),
-                      decoration: const InputDecoration(
-                        labelText: 'Your password',
-                        labelStyle: TextStyle(
+                    SizedBox(
+                      height: 50.0,
+                      child: TextFormField(
+                        cursorColor: AppColors.primaryDark,
+                        // ignore: avoid_bool_literals_in_conditional_expressions
+                        enabled: state.isSubmitting ? false : true,
+                        style: const TextStyle(
                           color: AppColors.primarygray,
-                          fontSize: 14.0,
                         ),
-                        floatingLabelBehavior: FloatingLabelBehavior.never,
-                        fillColor: Colors.white,
-                        filled: true,
-                      ),
-                      autocorrect: false,
-                      obscureText: true,
-                      keyboardType: TextInputType.visiblePassword,
-                      onChanged: (value) => context
-                          .bloc<SignInFormBloc>()
-                          .add(SignInFormEvent.passwordChanged(value)),
-                      validator: (_) => context
-                          .bloc<SignInFormBloc>()
-                          .state
-                          .password
-                          .value
-                          .fold(
-                            (f) => f.maybeMap(
-                              shortPassword: (_) => 'Password is too short',
-                              orElse: () => null,
-                            ),
-                            (_) => null,
+                        decoration: const InputDecoration(
+                          labelText: 'Your password',
+                          labelStyle: TextStyle(
+                            color: AppColors.primarygray,
+                            fontSize: 14.0,
                           ),
+                          floatingLabelBehavior: FloatingLabelBehavior.never,
+                          fillColor: Colors.white,
+                          filled: true,
+                        ),
+                        autocorrect: false,
+                        obscureText: true,
+                        keyboardType: TextInputType.visiblePassword,
+                        onChanged: (value) => context
+                            .bloc<SignInFormBloc>()
+                            .add(SignInFormEvent.passwordChanged(value)),
+                        validator: (_) => context
+                            .bloc<SignInFormBloc>()
+                            .state
+                            .password
+                            .value
+                            .fold(
+                              (f) => f.maybeMap(
+                                shortPassword: (_) => 'Password is too short',
+                                orElse: () => null,
+                              ),
+                              (_) => null,
+                            ),
+                      ),
                     ),
                     const SizedBox(height: 30.0),
                     Row(
@@ -169,15 +181,27 @@ class SignInFormWidget extends StatelessWidget {
                           child: SizedBox(
                             height: 45.0,
                             child: RawMaterialButton(
+                              highlightElevation: 0.0,
+                              highlightColor: state.isSubmitting
+                                  ? null
+                                  : Colors.transparent,
+                              splashColor:
+                                  state.isSubmitting ? null : Colors.white24,
                               shape: RoundedRectangleBorder(
                                 borderRadius: BorderRadius.circular(10.0),
                               ),
                               onPressed: () {
-                                context.bloc<SignInFormBloc>().add(
-                                    const SignInFormEvent
-                                        .signInWithEmailAndPasswordPressed());
+                                if (state.isSubmitting) {
+                                  //Do nothing when state is submiting
+                                } else {
+                                  context.bloc<SignInFormBloc>().add(
+                                      const SignInFormEvent
+                                          .signInWithEmailAndPasswordPressed());
+                                }
                               },
-                              fillColor: AppColors.primaryDark,
+                              fillColor: state.isSubmitting
+                                  ? Colors.grey[400]
+                                  : AppColors.primaryDark,
                               elevation: 0.0,
                               child: const Text(
                                 'Log In',
@@ -194,16 +218,27 @@ class SignInFormWidget extends StatelessWidget {
                           child: SizedBox(
                             height: 45.0,
                             child: RawMaterialButton(
+                              highlightElevation: 0.0,
+                              highlightColor: state.isSubmitting
+                                  ? null
+                                  : Colors.transparent,
+                              splashColor:
+                                  state.isSubmitting ? null : Colors.white24,
                               shape: RoundedRectangleBorder(
                                 borderRadius: BorderRadius.circular(10.0),
                               ),
                               onPressed: () {
-                                context.bloc<SignInFormBloc>().add(
+                                if (state.isSubmitting) {
+                                  //Do nothing when state is submiting
+                                } else {
+                                  context.bloc<SignInFormBloc>().add(
                                       const SignInFormEvent
-                                          .registerWithEmailAndPasswordPressed(),
-                                    );
+                                          .registerWithEmailAndPasswordPressed());
+                                }
                               },
-                              fillColor: AppColors.primaryDark,
+                              fillColor: state.isSubmitting
+                                  ? Colors.grey[400]
+                                  : AppColors.primaryDark,
                               elevation: 0.0,
                               child: const Text(
                                 'Sign Up',
@@ -226,8 +261,13 @@ class SignInFormWidget extends StatelessWidget {
                           borderRadius: BorderRadius.circular(10.0),
                         ),
                         onPressed: () {
-                          context.bloc<SignInFormBloc>().add(
-                              const SignInFormEvent.signInWithGooglePressed());
+                          if (state.isSubmitting) {
+                            //Do nothing when state is submiting
+                          } else {
+                            context.bloc<SignInFormBloc>().add(
+                                const SignInFormEvent
+                                    .signInWithGooglePressed());
+                          }
                         },
                         fillColor: Colors.grey[300],
                         elevation: 0.0,
