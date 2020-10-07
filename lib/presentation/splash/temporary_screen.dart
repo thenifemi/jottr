@@ -7,7 +7,7 @@ class TemporaryScreen extends StatelessWidget {
     return const Scaffold(
       body: Center(
         child: Text(
-          "AUTHENTICATED",
+          "AUTHENTICATED!",
           style: TextStyle(
             fontSize: 45.0,
             color: AppColors.primarygray,
