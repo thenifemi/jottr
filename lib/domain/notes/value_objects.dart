@@ -1,3 +1,5 @@
+import 'dart:ui';
+
 import 'package:Jottr/domain/core/value_validators.dart';
 import 'package:dartz/dartz.dart';
 
@@ -36,4 +38,28 @@ class TodoName extends ValueObject<String> {
   }
 
   const TodoName._(this.value);
+}
+
+class NoteColor extends ValueObject<Color> {
+  @override
+  final Either<ValueFailure<Color>, Color> value;
+
+  static const List<Color> prefdefinedColors = [
+    Color(0xff264653), //Charcaol
+    Color(0xff2a9d8f), //Persian Green
+    Color(0xffe9c46a), //Orange Yellow Crayola
+    Color(0xfff4a261), //Sandy Brown
+    Color(0xffe76f51), //Burnt Sienna
+    Color(0xffa8dadc), //Powder Blue
+    Color(0xff457b9d), //Celadon Blue
+  ];
+
+  factory NoteColor(Color input) {
+    assert(input != null);
+    return NoteColor._(
+        //insert validation
+        );
+  }
+
+  const NoteColor._(this.value);
 }
