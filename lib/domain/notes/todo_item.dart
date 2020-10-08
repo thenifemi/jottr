@@ -11,4 +11,10 @@ abstract class TodoItem with _$TodoItem {
     @required TodoName name,
     @required bool done,
   }) = _TodoItem;
+
+  factory TodoItem.empty() => TodoItem(
+        id: UniqueId(),
+        name: TodoName(''),
+        done: null,
+      );
 }
