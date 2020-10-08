@@ -30,6 +30,16 @@ abstract class Note implements _$Note {
   Option<ValueFailure<dynamic>> get failureOption {
     return body.failureOrUnit
         .andThen(todos.failureOrUnit)
+        .andThen(
+          todos
+              .getOrCrash()
+              // Getting the failureOption from the TodoItem ENTITY - NOT a failureOrUnit from a VALUE OBJECT
+              .map((todoItem) => todoItem.failureOption)
+              .filter((o) => o.isSome())
+              // If we can't get the 0th element, the list is empty. In such a case, it's valid!
+              .getOrElse(0, (_) => none())
+              .fold(() => right(unit), (f) => left(f)),
+        )
         .fold((f) => some(f), (r) => none());
   }
 }
