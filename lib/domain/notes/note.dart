@@ -1,13 +1,18 @@
+import 'package:Jottr/domain/core/failures.dart';
 import 'package:Jottr/domain/core/value_objects.dart';
 import 'package:Jottr/domain/notes/todo_item.dart';
 import 'package:Jottr/domain/notes/value_objects.dart';
+import 'package:dartz/dartz.dart';
 import 'package:freezed_annotation/freezed_annotation.dart';
 import 'package:kt_dart/kt.dart';
 
 part 'note.freezed.dart';
 
 @freezed
-abstract class Note with _$Note {
+abstract class Note implements _$Note {
+  const Note._();
+
+  // ignore: sort_unnamed_constructors_first
   const factory Note({
     @required UniqueId id,
     @required NoteBody body,
@@ -21,4 +26,10 @@ abstract class Note with _$Note {
         color: NoteColor(NoteColor.predefinedColors[0]),
         todos: List3(emptyList()),
       );
+
+  Option<ValueFailure<dynamic>> get failureOption {
+    return body.failureOrUnit
+        .andThen(todos.failureOrUnit)
+        .fold((f) => some(f), (r) => none());
+  }
 }
