@@ -1,10 +1,11 @@
-import 'package:Jottr/domain/core/failures.dart';
-import 'package:Jottr/domain/core/value_objects.dart';
-import 'package:Jottr/domain/notes/todo_item.dart';
-import 'package:Jottr/domain/notes/value_objects.dart';
 import 'package:dartz/dartz.dart';
 import 'package:freezed_annotation/freezed_annotation.dart';
 import 'package:kt_dart/kt.dart';
+
+import '../core/failures.dart';
+import '../core/value_objects.dart';
+import 'todo_item.dart';
+import 'value_objects.dart';
 
 part 'note.freezed.dart';
 
