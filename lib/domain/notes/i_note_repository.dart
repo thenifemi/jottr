@@ -1,5 +1,8 @@
-import 'package:Jottr/domain/notes/note.dart';
+import 'package:dartz/dartz.dart';
 import 'package:kt_dart/collection.dart';
+
+import 'note.dart';
+import 'note_failure.dart';
 
 abstract class INoteRepository {
   //watch notes
@@ -7,5 +10,7 @@ abstract class INoteRepository {
   //CUD
   //C Read UD
 
-  Stream<KtList<Note>> watchAll();
+  Stream<Either<NoteFailure, KtList<Note>>> watchAll();
+  Stream<Either<NoteFailure, KtList<Note>>> watchUncompleted();
+  Future<Either<NoteFailure, Unit>> create();
 }
