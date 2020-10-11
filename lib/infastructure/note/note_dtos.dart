@@ -12,6 +12,8 @@ import '../../domain/notes/value_objects.dart';
 part 'note_dtos.freezed.dart';
 part 'note_dtos.g.dart';
 
+// NOTE DTO
+
 @freezed
 abstract class NoteDTO implements _$NoteDTO {
   const factory NoteDTO({
@@ -69,6 +71,8 @@ class ServerTimeStampConverter implements JsonConverter<FieldValue, Object> {
   @override
   Object toJson(FieldValue fieldValue) => fieldValue;
 }
+
+// T_ITEM DTO
 
 @freezed
 abstract class TodoItemDTO implements _$TodoItemDTO {
