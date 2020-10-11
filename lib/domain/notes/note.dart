@@ -11,15 +11,14 @@ part 'note.freezed.dart';
 
 @freezed
 abstract class Note implements _$Note {
-  const Note._();
-
-  // ignore: sort_unnamed_constructors_first
   const factory Note({
     @required UniqueId id,
     @required NoteBody body,
     @required NoteColor color,
     @required List3<TodoItem> todos,
   }) = _Note;
+
+  const Note._();
 
   factory Note.empty() => Note(
         id: UniqueId(),
