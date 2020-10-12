@@ -24,8 +24,16 @@ class NoteWatcherBloc extends Bloc<NoteWatcherEvent, NoteWatcherState> {
     NoteWatcherEvent event,
   ) async* {
     yield* event.map(
-      watchAllStarted: null,
-      watchUncompletedStarted: null,
+      watchAllStarted: (e) async* {
+        yield const NoteWatcherState.loadingProgress();
+        yield* _noteRepository.watchAll().map(
+              (failureOrNotes) => failureOrNotes.fold(
+                (f) => NoteWatcherState.loadFailure(f),
+                (notes) => NoteWatcherState.loadSuccess(notes),
+              ),
+            );
+      },
+      watchUncompletedStarted: (e) async* {},
     );
   }
 }
