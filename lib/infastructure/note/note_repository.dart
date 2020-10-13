@@ -1,5 +1,7 @@
+import 'package:Jottr/infastructure/note/note_dtos.dart';
 import 'package:cloud_firestore/cloud_firestore.dart';
 import 'package:dartz/dartz.dart';
+import 'package:flutter/services.dart';
 import 'package:injectable/injectable.dart';
 import 'package:kt_dart/kt.dart';
 
@@ -35,7 +37,19 @@ class NoteRepository implements INoteRepository {
   @override
   Stream<Either<NoteFailure, KtList<Note>>> watchAll() async* {
     final userDoc = await _firestore.userDocument();
-    userDoc.noteCollection.snapshots();
+    yield* userDoc.noteCollection
+        .orderBy('serverTimeStamp', descending: true)
+        .snapshots()
+        .map(
+          (snapshot) => right(
+            snapshot.docs
+                .map((doc) => NoteDTO.fromFirestore(doc).toDomain())
+                .toImmutableList(),
+          ),
+        )
+        .handleError((e) {
+      if (e is PlatformException && e.message.contains('PERMISSION_DENIED')) {}
+    });
   }
 
   @override
