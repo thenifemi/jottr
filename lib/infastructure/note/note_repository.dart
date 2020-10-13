@@ -6,6 +6,7 @@ import 'package:kt_dart/kt.dart';
 import '../../domain/notes/i_note_repository.dart';
 import '../../domain/notes/note.dart';
 import '../../domain/notes/note_failure.dart';
+import '../../infastructure/core/firestore_helpers.dart';
 
 @LazySingleton(as: INoteRepository)
 class NoteRepository implements INoteRepository {
@@ -32,8 +33,9 @@ class NoteRepository implements INoteRepository {
   }
 
   @override
-  Stream<Either<NoteFailure, KtList<Note>>> watchAll() {
-    // user/{user ID}/notes/{notes ID}
+  Stream<Either<NoteFailure, KtList<Note>>> watchAll() async* {
+    final userDoc = await _firestore.userDocument();
+    userDoc.noteCollection.snapshots();
   }
 
   @override

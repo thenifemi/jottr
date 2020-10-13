@@ -1,7 +1,7 @@
 import 'package:dartz/dartz.dart';
 import 'package:equatable/equatable.dart';
 import 'package:flutter/cupertino.dart';
-import 'package:Jottr/application/core/errors.dart';
+import 'package:Jottr/domain/core/errors.dart';
 import 'package:uuid/uuid.dart';
 
 import 'failures.dart';
