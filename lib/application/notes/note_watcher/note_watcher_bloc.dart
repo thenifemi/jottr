@@ -1,11 +1,12 @@
 import 'dart:async';
 
-import 'package:Jottr/domain/notes/i_note_repository.dart';
 import 'package:bloc/bloc.dart';
+import 'package:dartz/dartz.dart';
 import 'package:freezed_annotation/freezed_annotation.dart';
 import 'package:injectable/injectable.dart';
 import 'package:kt_dart/kt.dart';
 
+import '../../../domain/notes/i_note_repository.dart';
 import '../../../domain/notes/note.dart';
 import '../../../domain/notes/note_failure.dart';
 
@@ -26,14 +27,19 @@ class NoteWatcherBloc extends Bloc<NoteWatcherEvent, NoteWatcherState> {
     yield* event.map(
       watchAllStarted: (e) async* {
         yield const NoteWatcherState.loadingProgress();
-        yield* _noteRepository.watchAll().map(
-              (failureOrNotes) => failureOrNotes.fold(
-                (f) => NoteWatcherState.loadFailure(f),
-                (notes) => NoteWatcherState.loadSuccess(notes),
+        _noteRepository.watchAll().listen(
+              (failureOrNotes) => add(
+                NoteWatcherEvent.notesRecieved(failureOrNotes),
               ),
             );
       },
       watchUncompletedStarted: (e) async* {},
+      notesRecieved: (_NotesRecieved e) async* {
+        yield e.failureOrNotes.fold(
+          (f) => NoteWatcherState.loadFailure(f),
+          (notes) => NoteWatcherState.loadSuccess(notes),
+        );
+      },
     );
   }
 }
