@@ -14,9 +14,9 @@ class _$NoteFormEventTearOff {
   const _$NoteFormEventTearOff();
 
 // ignore: unused_element
-  _Initialized initialized(Note note) {
+  _Initialized initialized(Option<Note> initialNoteOption) {
     return _Initialized(
-      note,
+      initialNoteOption,
     );
   }
 
@@ -55,7 +55,7 @@ const $NoteFormEvent = _$NoteFormEventTearOff();
 mixin _$NoteFormEvent {
   @optionalTypeArgs
   Result when<Result extends Object>({
-    @required Result initialized(Note note),
+    @required Result initialized(Option<Note> initialNoteOption),
     @required Result bodyChanged(String bodyStr),
     @required Result colorChanged(Color color),
     @required Result todosChanged(KtList<TodoItemPrimitive> todos),
@@ -63,7 +63,7 @@ mixin _$NoteFormEvent {
   });
   @optionalTypeArgs
   Result maybeWhen<Result extends Object>({
-    Result initialized(Note note),
+    Result initialized(Option<Note> initialNoteOption),
     Result bodyChanged(String bodyStr),
     Result colorChanged(Color color),
     Result todosChanged(KtList<TodoItemPrimitive> todos),
@@ -111,9 +111,7 @@ abstract class _$InitializedCopyWith<$Res> {
   factory _$InitializedCopyWith(
           _Initialized value, $Res Function(_Initialized) then) =
       __$InitializedCopyWithImpl<$Res>;
-  $Res call({Note note});
-
-  $NoteCopyWith<$Res> get note;
+  $Res call({Option<Note> initialNoteOption});
 }
 
 /// @nodoc
@@ -128,47 +126,42 @@ class __$InitializedCopyWithImpl<$Res> extends _$NoteFormEventCopyWithImpl<$Res>
 
   @override
   $Res call({
-    Object note = freezed,
+    Object initialNoteOption = freezed,
   }) {
     return _then(_Initialized(
-      note == freezed ? _value.note : note as Note,
+      initialNoteOption == freezed
+          ? _value.initialNoteOption
+          : initialNoteOption as Option<Note>,
     ));
-  }
-
-  @override
-  $NoteCopyWith<$Res> get note {
-    if (_value.note == null) {
-      return null;
-    }
-    return $NoteCopyWith<$Res>(_value.note, (value) {
-      return _then(_value.copyWith(note: value));
-    });
   }
 }
 
 /// @nodoc
 class _$_Initialized implements _Initialized {
-  const _$_Initialized(this.note) : assert(note != null);
+  const _$_Initialized(this.initialNoteOption)
+      : assert(initialNoteOption != null);
 
   @override
-  final Note note;
+  final Option<Note> initialNoteOption;
 
   @override
   String toString() {
-    return 'NoteFormEvent.initialized(note: $note)';
+    return 'NoteFormEvent.initialized(initialNoteOption: $initialNoteOption)';
   }
 
   @override
   bool operator ==(dynamic other) {
     return identical(this, other) ||
         (other is _Initialized &&
-            (identical(other.note, note) ||
-                const DeepCollectionEquality().equals(other.note, note)));
+            (identical(other.initialNoteOption, initialNoteOption) ||
+                const DeepCollectionEquality()
+                    .equals(other.initialNoteOption, initialNoteOption)));
   }
 
   @override
   int get hashCode =>
-      runtimeType.hashCode ^ const DeepCollectionEquality().hash(note);
+      runtimeType.hashCode ^
+      const DeepCollectionEquality().hash(initialNoteOption);
 
   @override
   _$InitializedCopyWith<_Initialized> get copyWith =>
@@ -177,7 +170,7 @@ class _$_Initialized implements _Initialized {
   @override
   @optionalTypeArgs
   Result when<Result extends Object>({
-    @required Result initialized(Note note),
+    @required Result initialized(Option<Note> initialNoteOption),
     @required Result bodyChanged(String bodyStr),
     @required Result colorChanged(Color color),
     @required Result todosChanged(KtList<TodoItemPrimitive> todos),
@@ -188,13 +181,13 @@ class _$_Initialized implements _Initialized {
     assert(colorChanged != null);
     assert(todosChanged != null);
     assert(saved != null);
-    return initialized(note);
+    return initialized(initialNoteOption);
   }
 
   @override
   @optionalTypeArgs
   Result maybeWhen<Result extends Object>({
-    Result initialized(Note note),
+    Result initialized(Option<Note> initialNoteOption),
     Result bodyChanged(String bodyStr),
     Result colorChanged(Color color),
     Result todosChanged(KtList<TodoItemPrimitive> todos),
@@ -203,7 +196,7 @@ class _$_Initialized implements _Initialized {
   }) {
     assert(orElse != null);
     if (initialized != null) {
-      return initialized(note);
+      return initialized(initialNoteOption);
     }
     return orElse();
   }
@@ -244,9 +237,9 @@ class _$_Initialized implements _Initialized {
 }
 
 abstract class _Initialized implements NoteFormEvent {
-  const factory _Initialized(Note note) = _$_Initialized;
+  const factory _Initialized(Option<Note> initialNoteOption) = _$_Initialized;
 
-  Note get note;
+  Option<Note> get initialNoteOption;
   _$InitializedCopyWith<_Initialized> get copyWith;
 }
 
@@ -309,7 +302,7 @@ class _$_BodyChanged implements _BodyChanged {
   @override
   @optionalTypeArgs
   Result when<Result extends Object>({
-    @required Result initialized(Note note),
+    @required Result initialized(Option<Note> initialNoteOption),
     @required Result bodyChanged(String bodyStr),
     @required Result colorChanged(Color color),
     @required Result todosChanged(KtList<TodoItemPrimitive> todos),
@@ -326,7 +319,7 @@ class _$_BodyChanged implements _BodyChanged {
   @override
   @optionalTypeArgs
   Result maybeWhen<Result extends Object>({
-    Result initialized(Note note),
+    Result initialized(Option<Note> initialNoteOption),
     Result bodyChanged(String bodyStr),
     Result colorChanged(Color color),
     Result todosChanged(KtList<TodoItemPrimitive> todos),
@@ -442,7 +435,7 @@ class _$_ColorChanged implements _ColorChanged {
   @override
   @optionalTypeArgs
   Result when<Result extends Object>({
-    @required Result initialized(Note note),
+    @required Result initialized(Option<Note> initialNoteOption),
     @required Result bodyChanged(String bodyStr),
     @required Result colorChanged(Color color),
     @required Result todosChanged(KtList<TodoItemPrimitive> todos),
@@ -459,7 +452,7 @@ class _$_ColorChanged implements _ColorChanged {
   @override
   @optionalTypeArgs
   Result maybeWhen<Result extends Object>({
-    Result initialized(Note note),
+    Result initialized(Option<Note> initialNoteOption),
     Result bodyChanged(String bodyStr),
     Result colorChanged(Color color),
     Result todosChanged(KtList<TodoItemPrimitive> todos),
@@ -575,7 +568,7 @@ class _$_TodosChanged implements _TodosChanged {
   @override
   @optionalTypeArgs
   Result when<Result extends Object>({
-    @required Result initialized(Note note),
+    @required Result initialized(Option<Note> initialNoteOption),
     @required Result bodyChanged(String bodyStr),
     @required Result colorChanged(Color color),
     @required Result todosChanged(KtList<TodoItemPrimitive> todos),
@@ -592,7 +585,7 @@ class _$_TodosChanged implements _TodosChanged {
   @override
   @optionalTypeArgs
   Result maybeWhen<Result extends Object>({
-    Result initialized(Note note),
+    Result initialized(Option<Note> initialNoteOption),
     Result bodyChanged(String bodyStr),
     Result colorChanged(Color color),
     Result todosChanged(KtList<TodoItemPrimitive> todos),
@@ -685,7 +678,7 @@ class _$_Saved implements _Saved {
   @override
   @optionalTypeArgs
   Result when<Result extends Object>({
-    @required Result initialized(Note note),
+    @required Result initialized(Option<Note> initialNoteOption),
     @required Result bodyChanged(String bodyStr),
     @required Result colorChanged(Color color),
     @required Result todosChanged(KtList<TodoItemPrimitive> todos),
@@ -702,7 +695,7 @@ class _$_Saved implements _Saved {
   @override
   @optionalTypeArgs
   Result maybeWhen<Result extends Object>({
-    Result initialized(Note note),
+    Result initialized(Option<Note> initialNoteOption),
     Result bodyChanged(String bodyStr),
     Result colorChanged(Color color),
     Result todosChanged(KtList<TodoItemPrimitive> todos),
@@ -760,8 +753,19 @@ class _$NoteFormStateTearOff {
   const _$NoteFormStateTearOff();
 
 // ignore: unused_element
-  _Initial initial() {
-    return const _Initial();
+  _NoteFormState call(
+      {@required Note note,
+      @required bool showErrorMessages,
+      @required bool isSaving,
+      @required bool isEditing,
+      @required Option<Either<NoteFailure, Unit>> saveFailureOrSuccessOption}) {
+    return _NoteFormState(
+      note: note,
+      showErrorMessages: showErrorMessages,
+      isSaving: isSaving,
+      isEditing: isEditing,
+      saveFailureOrSuccessOption: saveFailureOrSuccessOption,
+    );
   }
 }
 
@@ -771,24 +775,13 @@ const $NoteFormState = _$NoteFormStateTearOff();
 
 /// @nodoc
 mixin _$NoteFormState {
-  @optionalTypeArgs
-  Result when<Result extends Object>({
-    @required Result initial(),
-  });
-  @optionalTypeArgs
-  Result maybeWhen<Result extends Object>({
-    Result initial(),
-    @required Result orElse(),
-  });
-  @optionalTypeArgs
-  Result map<Result extends Object>({
-    @required Result initial(_Initial value),
-  });
-  @optionalTypeArgs
-  Result maybeMap<Result extends Object>({
-    Result initial(_Initial value),
-    @required Result orElse(),
-  });
+  Note get note;
+  bool get showErrorMessages;
+  bool get isSaving;
+  bool get isEditing;
+  Option<Either<NoteFailure, Unit>> get saveFailureOrSuccessOption;
+
+  $NoteFormStateCopyWith<NoteFormState> get copyWith;
 }
 
 /// @nodoc
@@ -796,6 +789,14 @@ abstract class $NoteFormStateCopyWith<$Res> {
   factory $NoteFormStateCopyWith(
           NoteFormState value, $Res Function(NoteFormState) then) =
       _$NoteFormStateCopyWithImpl<$Res>;
+  $Res call(
+      {Note note,
+      bool showErrorMessages,
+      bool isSaving,
+      bool isEditing,
+      Option<Either<NoteFailure, Unit>> saveFailureOrSuccessOption});
+
+  $NoteCopyWith<$Res> get note;
 }
 
 /// @nodoc
@@ -806,86 +807,180 @@ class _$NoteFormStateCopyWithImpl<$Res>
   final NoteFormState _value;
   // ignore: unused_field
   final $Res Function(NoteFormState) _then;
-}
-
-/// @nodoc
-abstract class _$InitialCopyWith<$Res> {
-  factory _$InitialCopyWith(_Initial value, $Res Function(_Initial) then) =
-      __$InitialCopyWithImpl<$Res>;
-}
-
-/// @nodoc
-class __$InitialCopyWithImpl<$Res> extends _$NoteFormStateCopyWithImpl<$Res>
-    implements _$InitialCopyWith<$Res> {
-  __$InitialCopyWithImpl(_Initial _value, $Res Function(_Initial) _then)
-      : super(_value, (v) => _then(v as _Initial));
 
   @override
-  _Initial get _value => super._value as _Initial;
+  $Res call({
+    Object note = freezed,
+    Object showErrorMessages = freezed,
+    Object isSaving = freezed,
+    Object isEditing = freezed,
+    Object saveFailureOrSuccessOption = freezed,
+  }) {
+    return _then(_value.copyWith(
+      note: note == freezed ? _value.note : note as Note,
+      showErrorMessages: showErrorMessages == freezed
+          ? _value.showErrorMessages
+          : showErrorMessages as bool,
+      isSaving: isSaving == freezed ? _value.isSaving : isSaving as bool,
+      isEditing: isEditing == freezed ? _value.isEditing : isEditing as bool,
+      saveFailureOrSuccessOption: saveFailureOrSuccessOption == freezed
+          ? _value.saveFailureOrSuccessOption
+          : saveFailureOrSuccessOption as Option<Either<NoteFailure, Unit>>,
+    ));
+  }
+
+  @override
+  $NoteCopyWith<$Res> get note {
+    if (_value.note == null) {
+      return null;
+    }
+    return $NoteCopyWith<$Res>(_value.note, (value) {
+      return _then(_value.copyWith(note: value));
+    });
+  }
 }
 
 /// @nodoc
-class _$_Initial implements _Initial {
-  const _$_Initial();
+abstract class _$NoteFormStateCopyWith<$Res>
+    implements $NoteFormStateCopyWith<$Res> {
+  factory _$NoteFormStateCopyWith(
+          _NoteFormState value, $Res Function(_NoteFormState) then) =
+      __$NoteFormStateCopyWithImpl<$Res>;
+  @override
+  $Res call(
+      {Note note,
+      bool showErrorMessages,
+      bool isSaving,
+      bool isEditing,
+      Option<Either<NoteFailure, Unit>> saveFailureOrSuccessOption});
+
+  @override
+  $NoteCopyWith<$Res> get note;
+}
+
+/// @nodoc
+class __$NoteFormStateCopyWithImpl<$Res>
+    extends _$NoteFormStateCopyWithImpl<$Res>
+    implements _$NoteFormStateCopyWith<$Res> {
+  __$NoteFormStateCopyWithImpl(
+      _NoteFormState _value, $Res Function(_NoteFormState) _then)
+      : super(_value, (v) => _then(v as _NoteFormState));
+
+  @override
+  _NoteFormState get _value => super._value as _NoteFormState;
+
+  @override
+  $Res call({
+    Object note = freezed,
+    Object showErrorMessages = freezed,
+    Object isSaving = freezed,
+    Object isEditing = freezed,
+    Object saveFailureOrSuccessOption = freezed,
+  }) {
+    return _then(_NoteFormState(
+      note: note == freezed ? _value.note : note as Note,
+      showErrorMessages: showErrorMessages == freezed
+          ? _value.showErrorMessages
+          : showErrorMessages as bool,
+      isSaving: isSaving == freezed ? _value.isSaving : isSaving as bool,
+      isEditing: isEditing == freezed ? _value.isEditing : isEditing as bool,
+      saveFailureOrSuccessOption: saveFailureOrSuccessOption == freezed
+          ? _value.saveFailureOrSuccessOption
+          : saveFailureOrSuccessOption as Option<Either<NoteFailure, Unit>>,
+    ));
+  }
+}
+
+/// @nodoc
+class _$_NoteFormState implements _NoteFormState {
+  const _$_NoteFormState(
+      {@required this.note,
+      @required this.showErrorMessages,
+      @required this.isSaving,
+      @required this.isEditing,
+      @required this.saveFailureOrSuccessOption})
+      : assert(note != null),
+        assert(showErrorMessages != null),
+        assert(isSaving != null),
+        assert(isEditing != null),
+        assert(saveFailureOrSuccessOption != null);
+
+  @override
+  final Note note;
+  @override
+  final bool showErrorMessages;
+  @override
+  final bool isSaving;
+  @override
+  final bool isEditing;
+  @override
+  final Option<Either<NoteFailure, Unit>> saveFailureOrSuccessOption;
 
   @override
   String toString() {
-    return 'NoteFormState.initial()';
+    return 'NoteFormState(note: $note, showErrorMessages: $showErrorMessages, isSaving: $isSaving, isEditing: $isEditing, saveFailureOrSuccessOption: $saveFailureOrSuccessOption)';
   }
 
   @override
   bool operator ==(dynamic other) {
-    return identical(this, other) || (other is _Initial);
+    return identical(this, other) ||
+        (other is _NoteFormState &&
+            (identical(other.note, note) ||
+                const DeepCollectionEquality().equals(other.note, note)) &&
+            (identical(other.showErrorMessages, showErrorMessages) ||
+                const DeepCollectionEquality()
+                    .equals(other.showErrorMessages, showErrorMessages)) &&
+            (identical(other.isSaving, isSaving) ||
+                const DeepCollectionEquality()
+                    .equals(other.isSaving, isSaving)) &&
+            (identical(other.isEditing, isEditing) ||
+                const DeepCollectionEquality()
+                    .equals(other.isEditing, isEditing)) &&
+            (identical(other.saveFailureOrSuccessOption,
+                    saveFailureOrSuccessOption) ||
+                const DeepCollectionEquality().equals(
+                    other.saveFailureOrSuccessOption,
+                    saveFailureOrSuccessOption)));
   }
 
   @override
-  int get hashCode => runtimeType.hashCode;
+  int get hashCode =>
+      runtimeType.hashCode ^
+      const DeepCollectionEquality().hash(note) ^
+      const DeepCollectionEquality().hash(showErrorMessages) ^
+      const DeepCollectionEquality().hash(isSaving) ^
+      const DeepCollectionEquality().hash(isEditing) ^
+      const DeepCollectionEquality().hash(saveFailureOrSuccessOption);
 
   @override
-  @optionalTypeArgs
-  Result when<Result extends Object>({
-    @required Result initial(),
-  }) {
-    assert(initial != null);
-    return initial();
-  }
-
-  @override
-  @optionalTypeArgs
-  Result maybeWhen<Result extends Object>({
-    Result initial(),
-    @required Result orElse(),
-  }) {
-    assert(orElse != null);
-    if (initial != null) {
-      return initial();
-    }
-    return orElse();
-  }
-
-  @override
-  @optionalTypeArgs
-  Result map<Result extends Object>({
-    @required Result initial(_Initial value),
-  }) {
-    assert(initial != null);
-    return initial(this);
-  }
-
-  @override
-  @optionalTypeArgs
-  Result maybeMap<Result extends Object>({
-    Result initial(_Initial value),
-    @required Result orElse(),
-  }) {
-    assert(orElse != null);
-    if (initial != null) {
-      return initial(this);
-    }
-    return orElse();
-  }
+  _$NoteFormStateCopyWith<_NoteFormState> get copyWith =>
+      __$NoteFormStateCopyWithImpl<_NoteFormState>(this, _$identity);
 }
 
-abstract class _Initial implements NoteFormState {
-  const factory _Initial() = _$_Initial;
+abstract class _NoteFormState implements NoteFormState {
+  const factory _NoteFormState(
+          {@required
+              Note note,
+          @required
+              bool showErrorMessages,
+          @required
+              bool isSaving,
+          @required
+              bool isEditing,
+          @required
+              Option<Either<NoteFailure, Unit>> saveFailureOrSuccessOption}) =
+      _$_NoteFormState;
+
+  @override
+  Note get note;
+  @override
+  bool get showErrorMessages;
+  @override
+  bool get isSaving;
+  @override
+  bool get isEditing;
+  @override
+  Option<Either<NoteFailure, Unit>> get saveFailureOrSuccessOption;
+  @override
+  _$NoteFormStateCopyWith<_NoteFormState> get copyWith;
 }
