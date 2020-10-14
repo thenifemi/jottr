@@ -17,21 +17,59 @@ class NoteRepository implements INoteRepository {
   NoteRepository(this._firestore);
 
   @override
-  Future<Either<NoteFailure, Unit>> create(Note note) {
-    // TODO: implement create
-    throw UnimplementedError();
+  Future<Either<NoteFailure, Unit>> create(Note note) async {
+    try {
+      final userDoc = await _firestore.userDocument();
+      final noteDTO = NoteDTO.fromDomain(note);
+
+      await userDoc.noteCollection.doc(noteDTO.id).set(noteDTO.toJson());
+      return right(unit);
+    } on PlatformException catch (e) {
+      if (e.message.contains('PERMISSION_DENIED')) {
+        return left(const NoteFailure.insufficientPermissions());
+      } else {
+        //log error
+        return left(const NoteFailure.unexpected());
+      }
+    }
   }
 
   @override
-  Future<Either<NoteFailure, Unit>> delete(Note note) {
-    // TODO: implement delete
-    throw UnimplementedError();
+  Future<Either<NoteFailure, Unit>> update(Note note) async {
+    try {
+      final userDoc = await _firestore.userDocument();
+      final noteDTO = NoteDTO.fromDomain(note);
+
+      await userDoc.noteCollection.doc(noteDTO.id).update(noteDTO.toJson());
+      return right(unit);
+    } on PlatformException catch (e) {
+      if (e is PlatformException && e.message.contains('PERMISSION_DENIED')) {
+        return left(const NoteFailure.insufficientPermissions());
+      } else if (e.message.contains('NOT_FOUND')) {
+        return left(const NoteFailure.unableToUpdate());
+      } else {
+        //log error
+        return left(const NoteFailure.unexpected());
+      }
+    }
   }
 
   @override
-  Future<Either<NoteFailure, Unit>> update(Note note) {
-    // TODO: implement update
-    throw UnimplementedError();
+  Future<Either<NoteFailure, Unit>> delete(Note note) async {
+    try {
+      final userDoc = await _firestore.userDocument();
+      final noteDTO = NoteDTO.fromDomain(note);
+
+      await userDoc.noteCollection.doc(noteDTO.id).set(noteDTO.toJson());
+      return right(unit);
+    } on PlatformException catch (e) {
+      if (e is PlatformException && e.message.contains('PERMISSION_DENIED')) {
+        return left(const NoteFailure.insufficientPermissions());
+      } else {
+        //log error
+        return left(const NoteFailure.unexpected());
+      }
+    }
   }
 
   @override
