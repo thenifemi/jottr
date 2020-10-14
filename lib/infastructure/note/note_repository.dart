@@ -23,6 +23,7 @@ class NoteRepository implements INoteRepository {
       final noteDTO = NoteDTO.fromDomain(note);
 
       await userDoc.noteCollection.doc(noteDTO.id).set(noteDTO.toJson());
+
       return right(unit);
     } on PlatformException catch (e) {
       if (e.message.contains('PERMISSION_DENIED')) {
@@ -41,6 +42,7 @@ class NoteRepository implements INoteRepository {
       final noteDTO = NoteDTO.fromDomain(note);
 
       await userDoc.noteCollection.doc(noteDTO.id).update(noteDTO.toJson());
+
       return right(unit);
     } on PlatformException catch (e) {
       if (e is PlatformException && e.message.contains('PERMISSION_DENIED')) {
@@ -58,13 +60,16 @@ class NoteRepository implements INoteRepository {
   Future<Either<NoteFailure, Unit>> delete(Note note) async {
     try {
       final userDoc = await _firestore.userDocument();
-      final noteDTO = NoteDTO.fromDomain(note);
+      final noteId = note.id.getOrCrash();
 
-      await userDoc.noteCollection.doc(noteDTO.id).set(noteDTO.toJson());
+      await userDoc.noteCollection.doc(noteId).delete();
+
       return right(unit);
     } on PlatformException catch (e) {
       if (e is PlatformException && e.message.contains('PERMISSION_DENIED')) {
         return left(const NoteFailure.insufficientPermissions());
+      } else if (e.message.contains('NOT_FOUND')) {
+        return left(const NoteFailure.unableToUpdate());
       } else {
         //log error
         return left(const NoteFailure.unexpected());
