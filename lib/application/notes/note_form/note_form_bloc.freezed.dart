@@ -14,6 +14,13 @@ class _$NoteFormEventTearOff {
   const _$NoteFormEventTearOff();
 
 // ignore: unused_element
+  _Initialized initialized(Note note) {
+    return _Initialized(
+      note,
+    );
+  }
+
+// ignore: unused_element
   _BodyChanged bodyChanged(String bodyStr) {
     return _BodyChanged(
       bodyStr,
@@ -28,10 +35,15 @@ class _$NoteFormEventTearOff {
   }
 
 // ignore: unused_element
-  _TodosChanged todosChanged(List<String> todos) {
+  _TodosChanged todosChanged(KtList<TodoItemPrimitive> todos) {
     return _TodosChanged(
       todos,
     );
+  }
+
+// ignore: unused_element
+  _Saved saved() {
+    return const _Saved();
   }
 }
 
@@ -43,28 +55,36 @@ const $NoteFormEvent = _$NoteFormEventTearOff();
 mixin _$NoteFormEvent {
   @optionalTypeArgs
   Result when<Result extends Object>({
+    @required Result initialized(Note note),
     @required Result bodyChanged(String bodyStr),
     @required Result colorChanged(Color color),
-    @required Result todosChanged(List<String> todos),
+    @required Result todosChanged(KtList<TodoItemPrimitive> todos),
+    @required Result saved(),
   });
   @optionalTypeArgs
   Result maybeWhen<Result extends Object>({
+    Result initialized(Note note),
     Result bodyChanged(String bodyStr),
     Result colorChanged(Color color),
-    Result todosChanged(List<String> todos),
+    Result todosChanged(KtList<TodoItemPrimitive> todos),
+    Result saved(),
     @required Result orElse(),
   });
   @optionalTypeArgs
   Result map<Result extends Object>({
+    @required Result initialized(_Initialized value),
     @required Result bodyChanged(_BodyChanged value),
     @required Result colorChanged(_ColorChanged value),
     @required Result todosChanged(_TodosChanged value),
+    @required Result saved(_Saved value),
   });
   @optionalTypeArgs
   Result maybeMap<Result extends Object>({
+    Result initialized(_Initialized value),
     Result bodyChanged(_BodyChanged value),
     Result colorChanged(_ColorChanged value),
     Result todosChanged(_TodosChanged value),
+    Result saved(_Saved value),
     @required Result orElse(),
   });
 }
@@ -84,6 +104,150 @@ class _$NoteFormEventCopyWithImpl<$Res>
   final NoteFormEvent _value;
   // ignore: unused_field
   final $Res Function(NoteFormEvent) _then;
+}
+
+/// @nodoc
+abstract class _$InitializedCopyWith<$Res> {
+  factory _$InitializedCopyWith(
+          _Initialized value, $Res Function(_Initialized) then) =
+      __$InitializedCopyWithImpl<$Res>;
+  $Res call({Note note});
+
+  $NoteCopyWith<$Res> get note;
+}
+
+/// @nodoc
+class __$InitializedCopyWithImpl<$Res> extends _$NoteFormEventCopyWithImpl<$Res>
+    implements _$InitializedCopyWith<$Res> {
+  __$InitializedCopyWithImpl(
+      _Initialized _value, $Res Function(_Initialized) _then)
+      : super(_value, (v) => _then(v as _Initialized));
+
+  @override
+  _Initialized get _value => super._value as _Initialized;
+
+  @override
+  $Res call({
+    Object note = freezed,
+  }) {
+    return _then(_Initialized(
+      note == freezed ? _value.note : note as Note,
+    ));
+  }
+
+  @override
+  $NoteCopyWith<$Res> get note {
+    if (_value.note == null) {
+      return null;
+    }
+    return $NoteCopyWith<$Res>(_value.note, (value) {
+      return _then(_value.copyWith(note: value));
+    });
+  }
+}
+
+/// @nodoc
+class _$_Initialized implements _Initialized {
+  const _$_Initialized(this.note) : assert(note != null);
+
+  @override
+  final Note note;
+
+  @override
+  String toString() {
+    return 'NoteFormEvent.initialized(note: $note)';
+  }
+
+  @override
+  bool operator ==(dynamic other) {
+    return identical(this, other) ||
+        (other is _Initialized &&
+            (identical(other.note, note) ||
+                const DeepCollectionEquality().equals(other.note, note)));
+  }
+
+  @override
+  int get hashCode =>
+      runtimeType.hashCode ^ const DeepCollectionEquality().hash(note);
+
+  @override
+  _$InitializedCopyWith<_Initialized> get copyWith =>
+      __$InitializedCopyWithImpl<_Initialized>(this, _$identity);
+
+  @override
+  @optionalTypeArgs
+  Result when<Result extends Object>({
+    @required Result initialized(Note note),
+    @required Result bodyChanged(String bodyStr),
+    @required Result colorChanged(Color color),
+    @required Result todosChanged(KtList<TodoItemPrimitive> todos),
+    @required Result saved(),
+  }) {
+    assert(initialized != null);
+    assert(bodyChanged != null);
+    assert(colorChanged != null);
+    assert(todosChanged != null);
+    assert(saved != null);
+    return initialized(note);
+  }
+
+  @override
+  @optionalTypeArgs
+  Result maybeWhen<Result extends Object>({
+    Result initialized(Note note),
+    Result bodyChanged(String bodyStr),
+    Result colorChanged(Color color),
+    Result todosChanged(KtList<TodoItemPrimitive> todos),
+    Result saved(),
+    @required Result orElse(),
+  }) {
+    assert(orElse != null);
+    if (initialized != null) {
+      return initialized(note);
+    }
+    return orElse();
+  }
+
+  @override
+  @optionalTypeArgs
+  Result map<Result extends Object>({
+    @required Result initialized(_Initialized value),
+    @required Result bodyChanged(_BodyChanged value),
+    @required Result colorChanged(_ColorChanged value),
+    @required Result todosChanged(_TodosChanged value),
+    @required Result saved(_Saved value),
+  }) {
+    assert(initialized != null);
+    assert(bodyChanged != null);
+    assert(colorChanged != null);
+    assert(todosChanged != null);
+    assert(saved != null);
+    return initialized(this);
+  }
+
+  @override
+  @optionalTypeArgs
+  Result maybeMap<Result extends Object>({
+    Result initialized(_Initialized value),
+    Result bodyChanged(_BodyChanged value),
+    Result colorChanged(_ColorChanged value),
+    Result todosChanged(_TodosChanged value),
+    Result saved(_Saved value),
+    @required Result orElse(),
+  }) {
+    assert(orElse != null);
+    if (initialized != null) {
+      return initialized(this);
+    }
+    return orElse();
+  }
+}
+
+abstract class _Initialized implements NoteFormEvent {
+  const factory _Initialized(Note note) = _$_Initialized;
+
+  Note get note;
+  _$InitializedCopyWith<_Initialized> get copyWith;
 }
 
 /// @nodoc
@@ -145,22 +309,28 @@ class _$_BodyChanged implements _BodyChanged {
   @override
   @optionalTypeArgs
   Result when<Result extends Object>({
+    @required Result initialized(Note note),
     @required Result bodyChanged(String bodyStr),
     @required Result colorChanged(Color color),
-    @required Result todosChanged(List<String> todos),
+    @required Result todosChanged(KtList<TodoItemPrimitive> todos),
+    @required Result saved(),
   }) {
+    assert(initialized != null);
     assert(bodyChanged != null);
     assert(colorChanged != null);
     assert(todosChanged != null);
+    assert(saved != null);
     return bodyChanged(bodyStr);
   }
 
   @override
   @optionalTypeArgs
   Result maybeWhen<Result extends Object>({
+    Result initialized(Note note),
     Result bodyChanged(String bodyStr),
     Result colorChanged(Color color),
-    Result todosChanged(List<String> todos),
+    Result todosChanged(KtList<TodoItemPrimitive> todos),
+    Result saved(),
     @required Result orElse(),
   }) {
     assert(orElse != null);
@@ -173,22 +343,28 @@ class _$_BodyChanged implements _BodyChanged {
   @override
   @optionalTypeArgs
   Result map<Result extends Object>({
+    @required Result initialized(_Initialized value),
     @required Result bodyChanged(_BodyChanged value),
     @required Result colorChanged(_ColorChanged value),
     @required Result todosChanged(_TodosChanged value),
+    @required Result saved(_Saved value),
   }) {
+    assert(initialized != null);
     assert(bodyChanged != null);
     assert(colorChanged != null);
     assert(todosChanged != null);
+    assert(saved != null);
     return bodyChanged(this);
   }
 
   @override
   @optionalTypeArgs
   Result maybeMap<Result extends Object>({
+    Result initialized(_Initialized value),
     Result bodyChanged(_BodyChanged value),
     Result colorChanged(_ColorChanged value),
     Result todosChanged(_TodosChanged value),
+    Result saved(_Saved value),
     @required Result orElse(),
   }) {
     assert(orElse != null);
@@ -266,22 +442,28 @@ class _$_ColorChanged implements _ColorChanged {
   @override
   @optionalTypeArgs
   Result when<Result extends Object>({
+    @required Result initialized(Note note),
     @required Result bodyChanged(String bodyStr),
     @required Result colorChanged(Color color),
-    @required Result todosChanged(List<String> todos),
+    @required Result todosChanged(KtList<TodoItemPrimitive> todos),
+    @required Result saved(),
   }) {
+    assert(initialized != null);
     assert(bodyChanged != null);
     assert(colorChanged != null);
     assert(todosChanged != null);
+    assert(saved != null);
     return colorChanged(color);
   }
 
   @override
   @optionalTypeArgs
   Result maybeWhen<Result extends Object>({
+    Result initialized(Note note),
     Result bodyChanged(String bodyStr),
     Result colorChanged(Color color),
-    Result todosChanged(List<String> todos),
+    Result todosChanged(KtList<TodoItemPrimitive> todos),
+    Result saved(),
     @required Result orElse(),
   }) {
     assert(orElse != null);
@@ -294,22 +476,28 @@ class _$_ColorChanged implements _ColorChanged {
   @override
   @optionalTypeArgs
   Result map<Result extends Object>({
+    @required Result initialized(_Initialized value),
     @required Result bodyChanged(_BodyChanged value),
     @required Result colorChanged(_ColorChanged value),
     @required Result todosChanged(_TodosChanged value),
+    @required Result saved(_Saved value),
   }) {
+    assert(initialized != null);
     assert(bodyChanged != null);
     assert(colorChanged != null);
     assert(todosChanged != null);
+    assert(saved != null);
     return colorChanged(this);
   }
 
   @override
   @optionalTypeArgs
   Result maybeMap<Result extends Object>({
+    Result initialized(_Initialized value),
     Result bodyChanged(_BodyChanged value),
     Result colorChanged(_ColorChanged value),
     Result todosChanged(_TodosChanged value),
+    Result saved(_Saved value),
     @required Result orElse(),
   }) {
     assert(orElse != null);
@@ -332,7 +520,7 @@ abstract class _$TodosChangedCopyWith<$Res> {
   factory _$TodosChangedCopyWith(
           _TodosChanged value, $Res Function(_TodosChanged) then) =
       __$TodosChangedCopyWithImpl<$Res>;
-  $Res call({List<String> todos});
+  $Res call({KtList<TodoItemPrimitive> todos});
 }
 
 /// @nodoc
@@ -351,7 +539,7 @@ class __$TodosChangedCopyWithImpl<$Res>
     Object todos = freezed,
   }) {
     return _then(_TodosChanged(
-      todos == freezed ? _value.todos : todos as List<String>,
+      todos == freezed ? _value.todos : todos as KtList<TodoItemPrimitive>,
     ));
   }
 }
@@ -361,7 +549,7 @@ class _$_TodosChanged implements _TodosChanged {
   const _$_TodosChanged(this.todos) : assert(todos != null);
 
   @override
-  final List<String> todos;
+  final KtList<TodoItemPrimitive> todos;
 
   @override
   String toString() {
@@ -387,22 +575,28 @@ class _$_TodosChanged implements _TodosChanged {
   @override
   @optionalTypeArgs
   Result when<Result extends Object>({
+    @required Result initialized(Note note),
     @required Result bodyChanged(String bodyStr),
     @required Result colorChanged(Color color),
-    @required Result todosChanged(List<String> todos),
+    @required Result todosChanged(KtList<TodoItemPrimitive> todos),
+    @required Result saved(),
   }) {
+    assert(initialized != null);
     assert(bodyChanged != null);
     assert(colorChanged != null);
     assert(todosChanged != null);
+    assert(saved != null);
     return todosChanged(todos);
   }
 
   @override
   @optionalTypeArgs
   Result maybeWhen<Result extends Object>({
+    Result initialized(Note note),
     Result bodyChanged(String bodyStr),
     Result colorChanged(Color color),
-    Result todosChanged(List<String> todos),
+    Result todosChanged(KtList<TodoItemPrimitive> todos),
+    Result saved(),
     @required Result orElse(),
   }) {
     assert(orElse != null);
@@ -415,22 +609,28 @@ class _$_TodosChanged implements _TodosChanged {
   @override
   @optionalTypeArgs
   Result map<Result extends Object>({
+    @required Result initialized(_Initialized value),
     @required Result bodyChanged(_BodyChanged value),
     @required Result colorChanged(_ColorChanged value),
     @required Result todosChanged(_TodosChanged value),
+    @required Result saved(_Saved value),
   }) {
+    assert(initialized != null);
     assert(bodyChanged != null);
     assert(colorChanged != null);
     assert(todosChanged != null);
+    assert(saved != null);
     return todosChanged(this);
   }
 
   @override
   @optionalTypeArgs
   Result maybeMap<Result extends Object>({
+    Result initialized(_Initialized value),
     Result bodyChanged(_BodyChanged value),
     Result colorChanged(_ColorChanged value),
     Result todosChanged(_TodosChanged value),
+    Result saved(_Saved value),
     @required Result orElse(),
   }) {
     assert(orElse != null);
@@ -442,10 +642,117 @@ class _$_TodosChanged implements _TodosChanged {
 }
 
 abstract class _TodosChanged implements NoteFormEvent {
-  const factory _TodosChanged(List<String> todos) = _$_TodosChanged;
+  const factory _TodosChanged(KtList<TodoItemPrimitive> todos) =
+      _$_TodosChanged;
 
-  List<String> get todos;
+  KtList<TodoItemPrimitive> get todos;
   _$TodosChangedCopyWith<_TodosChanged> get copyWith;
+}
+
+/// @nodoc
+abstract class _$SavedCopyWith<$Res> {
+  factory _$SavedCopyWith(_Saved value, $Res Function(_Saved) then) =
+      __$SavedCopyWithImpl<$Res>;
+}
+
+/// @nodoc
+class __$SavedCopyWithImpl<$Res> extends _$NoteFormEventCopyWithImpl<$Res>
+    implements _$SavedCopyWith<$Res> {
+  __$SavedCopyWithImpl(_Saved _value, $Res Function(_Saved) _then)
+      : super(_value, (v) => _then(v as _Saved));
+
+  @override
+  _Saved get _value => super._value as _Saved;
+}
+
+/// @nodoc
+class _$_Saved implements _Saved {
+  const _$_Saved();
+
+  @override
+  String toString() {
+    return 'NoteFormEvent.saved()';
+  }
+
+  @override
+  bool operator ==(dynamic other) {
+    return identical(this, other) || (other is _Saved);
+  }
+
+  @override
+  int get hashCode => runtimeType.hashCode;
+
+  @override
+  @optionalTypeArgs
+  Result when<Result extends Object>({
+    @required Result initialized(Note note),
+    @required Result bodyChanged(String bodyStr),
+    @required Result colorChanged(Color color),
+    @required Result todosChanged(KtList<TodoItemPrimitive> todos),
+    @required Result saved(),
+  }) {
+    assert(initialized != null);
+    assert(bodyChanged != null);
+    assert(colorChanged != null);
+    assert(todosChanged != null);
+    assert(saved != null);
+    return saved();
+  }
+
+  @override
+  @optionalTypeArgs
+  Result maybeWhen<Result extends Object>({
+    Result initialized(Note note),
+    Result bodyChanged(String bodyStr),
+    Result colorChanged(Color color),
+    Result todosChanged(KtList<TodoItemPrimitive> todos),
+    Result saved(),
+    @required Result orElse(),
+  }) {
+    assert(orElse != null);
+    if (saved != null) {
+      return saved();
+    }
+    return orElse();
+  }
+
+  @override
+  @optionalTypeArgs
+  Result map<Result extends Object>({
+    @required Result initialized(_Initialized value),
+    @required Result bodyChanged(_BodyChanged value),
+    @required Result colorChanged(_ColorChanged value),
+    @required Result todosChanged(_TodosChanged value),
+    @required Result saved(_Saved value),
+  }) {
+    assert(initialized != null);
+    assert(bodyChanged != null);
+    assert(colorChanged != null);
+    assert(todosChanged != null);
+    assert(saved != null);
+    return saved(this);
+  }
+
+  @override
+  @optionalTypeArgs
+  Result maybeMap<Result extends Object>({
+    Result initialized(_Initialized value),
+    Result bodyChanged(_BodyChanged value),
+    Result colorChanged(_ColorChanged value),
+    Result todosChanged(_TodosChanged value),
+    Result saved(_Saved value),
+    @required Result orElse(),
+  }) {
+    assert(orElse != null);
+    if (saved != null) {
+      return saved(this);
+    }
+    return orElse();
+  }
+}
+
+abstract class _Saved implements NoteFormEvent {
+  const factory _Saved() = _$_Saved;
 }
 
 /// @nodoc
