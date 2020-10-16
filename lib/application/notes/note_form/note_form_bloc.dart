@@ -1,15 +1,15 @@
 import 'dart:ui';
 
-import 'package:Jottr/domain/notes/i_note_repository.dart';
-import 'package:Jottr/domain/notes/value_objects.dart';
 import 'package:bloc/bloc.dart';
 import 'package:dartz/dartz.dart';
 import 'package:freezed_annotation/freezed_annotation.dart';
 import 'package:injectable/injectable.dart';
 import 'package:kt_dart/kt.dart';
 
+import '../../../domain/notes/i_note_repository.dart';
 import '../../../domain/notes/note.dart';
 import '../../../domain/notes/note_failure.dart';
+import '../../../domain/notes/value_objects.dart';
 import '../../../presentation/notes/note_form/misc/todo_item_presentation_classes.dart';
 
 part 'note_form_bloc.freezed.dart';
