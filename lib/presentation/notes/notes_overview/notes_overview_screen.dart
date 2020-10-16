@@ -3,6 +3,9 @@ import 'package:Jottr/application/notes/note_actor/note_actor_bloc.dart';
 import 'package:Jottr/application/notes/note_watcher/note_watcher_bloc.dart';
 import 'package:Jottr/injection.dart';
 import 'package:Jottr/presentation/core/colors.dart';
+import 'package:Jottr/presentation/routes/router.gr.dart';
+import 'package:auto_route/auto_route.dart';
+import 'package:flushbar/flushbar.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter_bloc/flutter_bloc.dart';
 
@@ -22,8 +25,36 @@ class NotesOverviewScreen extends StatelessWidget {
       child: MultiBlocListener(
         listeners: [
           BlocListener<AuthBloc, AuthState>(
-            listener: (context, state) {},
+            listener: (context, state) {
+              state.maybeMap(
+                unAuthenticated: (_) =>
+                    ExtendedNavigator.of(context).replace(Routes.signInScreen),
+                orElse: () {},
+              );
+            },
           ),
+          BlocListener<NoteActorBloc, NoteActorState>(
+            listener: (context, state) {
+              state.maybeMap(
+                deleteFailure: (state) {
+                  Flushbar(
+                    message: state.noteFailure.map(
+                      unexpected: (_) =>
+                          'Unexpected error occured while deleting! Please Contact support',
+                      insufficientPermissions: (_) =>
+                          'Insufficient Permissions 😂',
+                      unableToUpdate: (_) => 'Impossible error',
+                    ),
+                    flushbarStyle: FlushbarStyle.FLOATING,
+                    duration: const Duration(seconds: 4),
+                    margin: const EdgeInsets.all(15),
+                    borderRadius: 8,
+                  ).show(context);
+                },
+                orElse: () {},
+              );
+            },
+          )
         ],
         child: Scaffold(
           appBar: AppBar(
