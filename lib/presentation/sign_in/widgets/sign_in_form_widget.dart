@@ -1,3 +1,5 @@
+import 'package:Jottr/presentation/routes/router.gr.dart';
+import 'package:auto_route/auto_route.dart';
 import 'package:flushbar/flushbar.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter_bloc/flutter_bloc.dart';
@@ -29,7 +31,7 @@ class SignInFormWidget extends StatelessWidget {
               ).show(context);
             },
             (_) => {
-              //TODO: Navigate
+              ExtendedNavigator.of(context).replace(Routes.notesOverviewScreen)
             },
           ),
         );

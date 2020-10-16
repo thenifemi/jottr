@@ -9,18 +9,18 @@
 import 'package:auto_route/auto_route.dart';
 import 'package:flutter/cupertino.dart';
 
+import '../notes/notes_overview/notes_overview_screen.dart';
 import '../sign_in/sign_in_screen.dart';
 import '../splash/splash_screen.dart';
-import '../splash/temporary_screen.dart';
 
 class Routes {
   static const String splashScreen = '/';
   static const String signInScreen = '/sign-in-screen';
-  static const String temporaryScreen = '/temporary-screen';
+  static const String notesOverviewScreen = '/notes-overview-screen';
   static const all = <String>{
     splashScreen,
     signInScreen,
-    temporaryScreen,
+    notesOverviewScreen,
   };
 }
 
@@ -30,7 +30,7 @@ class MyRouter extends RouterBase {
   final _routes = <RouteDef>[
     RouteDef(Routes.splashScreen, page: SplashScreen),
     RouteDef(Routes.signInScreen, page: SignInScreen),
-    RouteDef(Routes.temporaryScreen, page: TemporaryScreen),
+    RouteDef(Routes.notesOverviewScreen, page: NotesOverviewScreen),
   ];
   @override
   Map<Type, AutoRouteFactory> get pagesMap => _pagesMap;
@@ -47,9 +47,9 @@ class MyRouter extends RouterBase {
         settings: data,
       );
     },
-    TemporaryScreen: (data) {
+    NotesOverviewScreen: (data) {
       return CupertinoPageRoute<dynamic>(
-        builder: (context) => TemporaryScreen(),
+        builder: (context) => NotesOverviewScreen(),
         settings: data,
       );
     },
@@ -65,6 +65,6 @@ extension MyRouterExtendedNavigatorStateX on ExtendedNavigatorState {
 
   Future<dynamic> pushSignInScreen() => push<dynamic>(Routes.signInScreen);
 
-  Future<dynamic> pushTemporaryScreen() =>
-      push<dynamic>(Routes.temporaryScreen);
+  Future<dynamic> pushNotesOverviewScreen() =>
+      push<dynamic>(Routes.notesOverviewScreen);
 }

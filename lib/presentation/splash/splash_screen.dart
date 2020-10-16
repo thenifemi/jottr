@@ -13,9 +13,8 @@ class SplashScreen extends StatelessWidget {
       listener: (context, state) {
         state.map(
           initial: (_) {},
-          authenticated: (_) {
-            ExtendedNavigator.of(context).replace(Routes.temporaryScreen);
-          },
+          authenticated: (_) =>
+              ExtendedNavigator.of(context).replace(Routes.notesOverviewScreen),
           unAuthenticated: (_) =>
               ExtendedNavigator.of(context).replace(Routes.signInScreen),
         );
