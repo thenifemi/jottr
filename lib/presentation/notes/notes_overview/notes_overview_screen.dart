@@ -43,7 +43,7 @@ class NotesOverviewScreen extends StatelessWidget {
                           'Unexpected error occured while deleting! Please Contact support',
                       insufficientPermissions: (_) =>
                           'Insufficient Permissions 😂',
-                      unableToUpdate: (_) => 'Impossible error',
+                      unableToUpdate: (_) => 'ImpossibleR error',
                     ),
                     flushbarStyle: FlushbarStyle.FLOATING,
                     duration: const Duration(seconds: 4),
