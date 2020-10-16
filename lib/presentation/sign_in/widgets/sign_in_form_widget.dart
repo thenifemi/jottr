@@ -1,3 +1,4 @@
+import 'package:Jottr/application/auth/auth_bloc.dart';
 import 'package:Jottr/presentation/routes/router.gr.dart';
 import 'package:auto_route/auto_route.dart';
 import 'package:flushbar/flushbar.dart';
@@ -30,8 +31,11 @@ class SignInFormWidget extends StatelessWidget {
                 borderRadius: 8,
               ).show(context);
             },
-            (_) => {
-              ExtendedNavigator.of(context).replace(Routes.notesOverviewScreen)
+            (_) {
+              ExtendedNavigator.of(context).replace(Routes.notesOverviewScreen);
+              context
+                  .bloc<AuthBloc>()
+                  .add(const AuthEvent.authCheckRequested());
             },
           ),
         );
