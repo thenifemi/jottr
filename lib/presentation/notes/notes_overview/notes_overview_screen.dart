@@ -1,13 +1,15 @@
-import 'package:Jottr/application/auth/auth_bloc.dart';
-import 'package:Jottr/application/notes/note_actor/note_actor_bloc.dart';
-import 'package:Jottr/application/notes/note_watcher/note_watcher_bloc.dart';
-import 'package:Jottr/injection.dart';
-import 'package:Jottr/presentation/core/colors.dart';
-import 'package:Jottr/presentation/routes/router.gr.dart';
 import 'package:auto_route/auto_route.dart';
 import 'package:flushbar/flushbar.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter_bloc/flutter_bloc.dart';
+
+import '../../../application/auth/auth_bloc.dart';
+import '../../../application/notes/note_actor/note_actor_bloc.dart';
+import '../../../application/notes/note_watcher/note_watcher_bloc.dart';
+import '../../../injection.dart';
+import '../../core/colors.dart';
+import '../../routes/router.gr.dart';
+import 'widgets/notes_overview_body_widget.dart';
 
 class NotesOverviewScreen extends StatelessWidget {
   @override
@@ -84,6 +86,7 @@ class NotesOverviewScreen extends StatelessWidget {
             ],
             elevation: 0.0,
           ),
+          body: NotesOverviewBody(),
           floatingActionButton: FloatingActionButton(
             onPressed: () {
               //TODO: Navigate to NoteFormScreen
