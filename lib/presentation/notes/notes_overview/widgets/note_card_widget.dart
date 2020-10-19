@@ -1,6 +1,8 @@
+import 'package:Jottr/application/notes/note_actor/note_actor_bloc.dart';
 import 'package:Jottr/domain/notes/todo_item.dart';
 import 'package:Jottr/presentation/core/colors.dart';
 import 'package:flutter/material.dart';
+import 'package:flutter_bloc/flutter_bloc.dart';
 import 'package:kt_dart/kt.dart';
 
 import '../../../../domain/notes/note.dart';
@@ -20,6 +22,9 @@ class NoteCard extends StatelessWidget {
       child: InkWell(
         onTap: () {
           //TODO: Implement Navigation
+        },
+        onLongPress: () {
+          final noteActorBloc = context.bloc<NoteActorBloc>();
         },
         child: Padding(
           padding: const EdgeInsets.all(10.0),
@@ -49,6 +54,37 @@ class NoteCard extends StatelessWidget {
         ),
       ),
     );
+  }
+
+  void _showDeletionDialog(
+    BuildContext context,
+    NoteActorBloc noteActorBloc,
+  ) {
+    showDialog(
+        context: context,
+        builder: (context) {
+          return AlertDialog(
+            title: const Text('Note'),
+            content: Text(
+              note.body.getOrCrash(),
+              maxLines: 3,
+              overflow: TextOverflow.ellipsis,
+            ),
+            actions: [
+              FlatButton(
+                onPressed: () => Navigator.pop(context),
+                child: const Text('CANCEL'),
+              ),
+              FlatButton(
+                onPressed: () {
+                  noteActorBloc.add(NoteActorEvent.deleted(note));
+                  Navigator.pop(context);
+                },
+                child: const Text('DELETE'),
+              )
+            ],
+          );
+        });
   }
 }
 
