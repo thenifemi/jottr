@@ -32,6 +32,7 @@ dependencies:
   firebase_core: ^0.5.0
   flushbar: ^1.10.4
   flutter_bloc: ^6.0.5
+  flutter_hooks: ^0.14.1
   freezed: ^0.12.2
   freezed_annotation: ^0.12.0
   get_it: ^5.0.1

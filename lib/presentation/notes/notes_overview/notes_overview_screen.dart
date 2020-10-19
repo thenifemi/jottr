@@ -1,4 +1,3 @@
-import 'package:Jottr/presentation/notes/notes_overview/widgets/uncompleted_switch.dart';
 import 'package:auto_route/auto_route.dart';
 import 'package:flushbar/flushbar.dart';
 import 'package:flutter/material.dart';
@@ -11,6 +10,7 @@ import '../../../injection.dart';
 import '../../core/colors.dart';
 import '../../routes/router.gr.dart';
 import 'widgets/notes_overview_body_widget.dart';
+import 'widgets/uncompleted_switch.dart';
 
 class NotesOverviewScreen extends StatelessWidget {
   @override

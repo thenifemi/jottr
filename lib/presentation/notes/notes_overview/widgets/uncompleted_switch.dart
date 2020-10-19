@@ -1,11 +1,20 @@
 import 'package:flutter/material.dart';
+import 'package:flutter_hooks/flutter_hooks.dart';
 
-class UncompletedSwitch extends StatelessWidget {
+class UncompletedSwitch extends HookWidget {
   @override
   Widget build(BuildContext context) {
+    final toggleState = useState(false);
+
     return InkResponse(
-      onTap: () {},
-      child: Icon(Icons.check_box_outline_blank),
+      onTap: () {
+        toggleState.value = !toggleState.value;
+      },
+      child: Icon(
+        toggleState.value
+            ? Icons.check_box_outline_blank
+            : Icons.indeterminate_check_box_rounded,
+      ),
     );
   }
 }
