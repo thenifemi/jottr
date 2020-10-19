@@ -1,3 +1,4 @@
+import 'package:Jottr/presentation/notes/notes_overview/widgets/critical_failure_display_widget.dart';
 import 'package:Jottr/presentation/notes/notes_overview/widgets/error_note_card_widget.dart';
 import 'package:Jottr/presentation/notes/notes_overview/widgets/note_card_widget.dart';
 import 'package:flutter/material.dart';
@@ -25,19 +26,14 @@ class NotesOverviewBody extends StatelessWidget {
                   if (note.failureOption.isSome()) {
                     return ErrorNoteCard(note: note);
                   } else {
-                    return NoteCard(
-                      note: note,
-                    );
+                    return NoteCard(note: note);
                   }
                 },
               ),
             );
           },
-          loadFailure: (_) => Container(
-            color: Colors.yellow,
-            height: 200.0,
-            width: 200.0,
-          ),
+          loadFailure: (state) =>
+              CriticalFailureDisplay(failure: state.noteFailure),
         );
       },
     );
