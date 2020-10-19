@@ -1,19 +1,20 @@
-import 'package:Jottr/domain/core/value_objects.dart';
-import 'package:Jottr/domain/notes/todo_item.dart';
-import 'package:Jottr/domain/notes/value_objects.dart';
 import 'package:freezed_annotation/freezed_annotation.dart';
+
+import '../../../../domain/core/value_objects.dart';
+import '../../../../domain/notes/todo_item.dart';
+import '../../../../domain/notes/value_objects.dart';
 
 part 'todo_item_presentation_classes.freezed.dart';
 
 @freezed
 abstract class TodoItemPrimitive implements _$TodoItemPrimitive {
-  const TodoItemPrimitive._();
-
   const factory TodoItemPrimitive({
     @required UniqueId id,
     @required String name,
     @required bool done,
   }) = _TodoItemPrimitive;
+
+  const TodoItemPrimitive._();
 
   factory TodoItemPrimitive.empty() => TodoItemPrimitive(
         id: UniqueId(),
