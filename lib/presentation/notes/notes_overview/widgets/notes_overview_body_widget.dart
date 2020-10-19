@@ -1,3 +1,4 @@
+import 'package:Jottr/presentation/notes/notes_overview/widgets/error_note_card_widget.dart';
 import 'package:Jottr/presentation/notes/notes_overview/widgets/note_card_widget.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter_bloc/flutter_bloc.dart';
@@ -22,11 +23,7 @@ class NotesOverviewBody extends StatelessWidget {
                   final note = state.notes[i];
 
                   if (note.failureOption.isSome()) {
-                    return Container(
-                      color: Colors.red,
-                      height: 100.0,
-                      width: 100.0,
-                    );
+                    return ErrorNoteCard(note: note);
                   } else {
                     return NoteCard(
                       note: note,

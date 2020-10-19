@@ -25,6 +25,7 @@ class NoteCard extends StatelessWidget {
         },
         onLongPress: () {
           final noteActorBloc = context.bloc<NoteActorBloc>();
+          _showDeletionDialog(context, noteActorBloc);
         },
         child: Padding(
           padding: const EdgeInsets.all(10.0),
