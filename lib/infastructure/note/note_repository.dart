@@ -79,27 +79,25 @@ class NoteRepository implements INoteRepository {
 
   @override
   Stream<Either<NoteFailure, KtList<Note>>> watchAll() async* {
-    yield left(const NoteFailure.insufficientPermissions());
-
-    // final userDoc = await _firestore.userDocument();
-    // yield* userDoc.noteCollection
-    //     .orderBy('serverTimeStamp', descending: true)
-    //     .snapshots()
-    //     .map(
-    //       (snapshot) => right<NoteFailure, KtList<Note>>(
-    //         snapshot.docs
-    //             .map((doc) => NoteDTO.fromFirestore(doc).toDomain())
-    //             .toImmutableList(),
-    //       ),
-    //     )
-    //     .handleError((e) {
-    //   if (e is PlatformException && e.message.contains('PERMISSION_DENIED')) {
-    //     return left(const NoteFailure.insufficientPermissions());
-    //   } else {
-    //     //log error
-    //     return left(const NoteFailure.unexpected());
-    //   }
-    // });
+    final userDoc = await _firestore.userDocument();
+    yield* userDoc.noteCollection
+        .orderBy('serverTimeStamp', descending: true)
+        .snapshots()
+        .map(
+          (snapshot) => right<NoteFailure, KtList<Note>>(
+            snapshot.docs
+                .map((doc) => NoteDTO.fromFirestore(doc).toDomain())
+                .toImmutableList(),
+          ),
+        )
+        .handleError((e) {
+      if (e is PlatformException && e.message.contains('PERMISSION_DENIED')) {
+        return left(const NoteFailure.insufficientPermissions());
+      } else {
+        //log error
+        return left(const NoteFailure.unexpected());
+      }
+    });
   }
 
   @override
