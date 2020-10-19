@@ -1,4 +1,3 @@
-import 'package:Jottr/infastructure/note/note_dtos.dart';
 import 'package:cloud_firestore/cloud_firestore.dart';
 import 'package:dartz/dartz.dart';
 import 'package:flutter/services.dart';
@@ -9,6 +8,7 @@ import '../../domain/notes/i_note_repository.dart';
 import '../../domain/notes/note.dart';
 import '../../domain/notes/note_failure.dart';
 import '../../infastructure/core/firestore_helpers.dart';
+import 'note_dtos.dart';
 
 @LazySingleton(as: INoteRepository)
 class NoteRepository implements INoteRepository {
