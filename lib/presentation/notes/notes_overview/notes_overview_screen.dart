@@ -1,3 +1,4 @@
+import 'package:Jottr/presentation/notes/notes_overview/widgets/uncompleted_switch.dart';
 import 'package:auto_route/auto_route.dart';
 import 'package:flushbar/flushbar.dart';
 import 'package:flutter/material.dart';
@@ -68,12 +69,7 @@ class NotesOverviewScreen extends StatelessWidget {
               ),
             ),
             actions: [
-              const IconButton(
-                  icon: Icon(
-                    Icons.check_box_rounded,
-                    color: AppColors.primaryDark,
-                  ),
-                  onPressed: null),
+              UncompletedSwitch(),
               Padding(
                 padding: const EdgeInsets.symmetric(horizontal: 10.0),
                 child: GestureDetector(
