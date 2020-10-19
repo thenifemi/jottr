@@ -1,10 +1,11 @@
-import 'package:Jottr/application/auth/auth_bloc.dart';
-import 'package:Jottr/presentation/core/colors.dart';
-import 'package:Jottr/presentation/routes/router.gr.dart';
 import 'package:auto_route/auto_route.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter/services.dart';
 import 'package:flutter_bloc/flutter_bloc.dart';
+
+import '../../application/auth/auth_bloc.dart';
+import '../core/colors.dart';
+import '../routes/router.gr.dart';
 
 class SplashScreen extends StatelessWidget {
   @override
