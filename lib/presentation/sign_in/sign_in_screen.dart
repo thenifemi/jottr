@@ -1,9 +1,9 @@
 import 'package:flutter/material.dart';
 import 'package:flutter_bloc/flutter_bloc.dart';
-import 'package:Jottr/presentation/core/colors.dart';
 
 import '../../application/auth/sign_in_form/sign_in_form_bloc.dart';
 import '../../injection.dart';
+import '../core/colors.dart';
 import 'widgets/sign_in_form_widget.dart';
 
 class SignInScreen extends StatelessWidget {
