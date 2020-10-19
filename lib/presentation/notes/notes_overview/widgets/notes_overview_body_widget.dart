@@ -1,3 +1,4 @@
+import 'package:Jottr/presentation/notes/notes_overview/widgets/note_card_widget.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter_bloc/flutter_bloc.dart';
 
@@ -13,24 +14,26 @@ class NotesOverviewBody extends StatelessWidget {
           loadingProgress: (_) =>
               const Center(child: CircularProgressIndicator()),
           loadSuccess: (state) {
-            return ListView.builder(
-              itemCount: state.notes.size,
-              itemBuilder: (context, i) {
-                final note = state.notes[i];
-                if (note.failureOption.isSome()) {
-                  return Container(
-                    color: Colors.red,
-                    height: 100.0,
-                    width: 100.0,
-                  );
-                } else {
-                  return Container(
-                    color: Colors.green,
-                    height: 100.0,
-                    width: 100.0,
-                  );
-                }
-              },
+            return Padding(
+              padding: const EdgeInsets.symmetric(horizontal: 10.0),
+              child: ListView.builder(
+                itemCount: state.notes.size,
+                itemBuilder: (context, i) {
+                  final note = state.notes[i];
+
+                  if (note.failureOption.isSome()) {
+                    return Container(
+                      color: Colors.red,
+                      height: 100.0,
+                      width: 100.0,
+                    );
+                  } else {
+                    return NoteCard(
+                      note: note,
+                    );
+                  }
+                },
+              ),
             );
           },
           loadFailure: (_) => Container(
