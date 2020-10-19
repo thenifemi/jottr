@@ -1,4 +1,4 @@
-import 'package:Jottr/domain/core/failures.dart';
+import 'failures.dart';
 
 class NotAuthenticatedError extends Error {}
 
