@@ -1,7 +1,8 @@
-import 'package:Jottr/domain/auth/i_auth_facade.dart';
-import 'package:Jottr/domain/core/errors.dart';
-import 'package:Jottr/injection.dart';
 import 'package:cloud_firestore/cloud_firestore.dart';
+
+import '../../domain/auth/i_auth_facade.dart';
+import '../../domain/core/errors.dart';
+import '../../injection.dart';
 
 extension FirestoreX on FirebaseFirestore {
   Future<DocumentReference> userDocument() async {
