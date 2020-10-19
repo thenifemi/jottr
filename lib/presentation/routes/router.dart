@@ -1,7 +1,8 @@
-import 'package:Jottr/presentation/notes/notes_overview/notes_overview_screen.dart';
-import 'package:Jottr/presentation/splash/splash_screen.dart';
 import 'package:auto_route/auto_route_annotations.dart';
-import 'package:Jottr/presentation/sign_in/sign_in_screen.dart';
+
+import '../notes/notes_overview/notes_overview_screen.dart';
+import '../sign_in/sign_in_screen.dart';
+import '../splash/splash_screen.dart';
 
 @MaterialAutoRouter(
   routes: <AutoRoute>[
