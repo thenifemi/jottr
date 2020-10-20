@@ -1,11 +1,12 @@
-import 'package:Jottr/application/notes/note_form/note_form_bloc.dart';
-import 'package:Jottr/injection.dart';
-import 'package:Jottr/presentation/routes/router.gr.dart';
 import 'package:auto_route/auto_route.dart';
 import 'package:dartz/dartz.dart';
 import 'package:flushbar/flushbar.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter_bloc/flutter_bloc.dart';
+
+import 'package:Jottr/application/notes/note_form/note_form_bloc.dart';
+import 'package:Jottr/injection.dart';
+import 'package:Jottr/presentation/routes/router.gr.dart';
 
 import '../../../domain/notes/note.dart';
 
@@ -57,7 +58,7 @@ class NoteFormScreen extends StatelessWidget {
           return Stack(
             children: [
               const NoteFormScreenScaffold(),
-              const SavingInProgressOverlay(),
+              SavingInProgressOverlay(isSaving: state.isSaving),
             ],
           );
         },
@@ -67,13 +68,18 @@ class NoteFormScreen extends StatelessWidget {
 }
 
 class SavingInProgressOverlay extends StatelessWidget {
+  final bool isSaving;
   const SavingInProgressOverlay({
     Key key,
+    @required this.isSaving,
   }) : super(key: key);
 
   @override
   Widget build(BuildContext context) {
-    return Container();
+    return AnimatedContainer(
+      duration: const Duration(milliseconds: 150),
+      color: isSaving ? Colors.black.withOpacity(0.8) : Colors.transparent,
+    );
   }
 }
 
