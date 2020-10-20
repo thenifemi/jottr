@@ -1,3 +1,4 @@
+import 'package:Jottr/presentation/core/colors.dart';
 import 'package:auto_route/auto_route.dart';
 import 'package:dartz/dartz.dart';
 import 'package:flushbar/flushbar.dart';
@@ -76,9 +77,26 @@ class SavingInProgressOverlay extends StatelessWidget {
 
   @override
   Widget build(BuildContext context) {
-    return AnimatedContainer(
-      duration: const Duration(milliseconds: 150),
-      color: isSaving ? Colors.black.withOpacity(0.8) : Colors.transparent,
+    return IgnorePointer(
+      ignoring: !isSaving,
+      child: AnimatedContainer(
+        duration: const Duration(milliseconds: 150),
+        color: isSaving ? Colors.black.withOpacity(0.6) : Colors.transparent,
+        width: MediaQuery.of(context).size.width,
+        height: MediaQuery.of(context).size.height,
+        child: Visibility(
+          visible: isSaving,
+          child: Column(
+            mainAxisAlignment: MainAxisAlignment.center,
+            // ignore: prefer_const_literals_to_create_immutables
+            children: [
+              const CircularProgressIndicator(
+                backgroundColor: AppColors.primaryDark,
+              ),
+            ],
+          ),
+        ),
+      ),
     );
   }
 }
