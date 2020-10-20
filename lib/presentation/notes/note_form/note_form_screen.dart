@@ -1,4 +1,11 @@
+import 'package:Jottr/application/notes/note_form/note_form_bloc.dart';
+import 'package:Jottr/injection.dart';
+import 'package:Jottr/presentation/routes/router.gr.dart';
+import 'package:auto_route/auto_route.dart';
+import 'package:dartz/dartz.dart';
+import 'package:flushbar/flushbar.dart';
 import 'package:flutter/material.dart';
+import 'package:flutter_bloc/flutter_bloc.dart';
 
 import '../../../domain/notes/note.dart';
 
@@ -12,6 +19,89 @@ class NoteFormScreen extends StatelessWidget {
 
   @override
   Widget build(BuildContext context) {
+    return BlocProvider(
+      create: (context) => getIt<NoteFormBloc>()
+        ..add(NoteFormEvent.initialized(optionOf(editednote))),
+      child: BlocConsumer<NoteFormBloc, NoteFormState>(
+        listenWhen: (p, c) =>
+            p.saveFailureOrSuccessOption != c.saveFailureOrSuccessOption,
+        listener: (context, state) {
+          state.saveFailureOrSuccessOption.fold(
+            () => {},
+            (either) {
+              either.fold(
+                (failure) {
+                  Flushbar(
+                    message: failure.map(
+                      unexpected: (_) =>
+                          'Unexpected error occured, please contact support.',
+                      insufficientPermissions: (_) =>
+                          'Insufficient Permisions.',
+                      unableToUpdate: (_) =>
+                          "Couldn't update note. Please contact support.",
+                    ),
+                    flushbarStyle: FlushbarStyle.FLOATING,
+                    duration: const Duration(seconds: 3),
+                    margin: const EdgeInsets.all(15),
+                    borderRadius: 8,
+                  ).show(context);
+                },
+                (_) => ExtendedNavigator.of(context).popUntil((route) =>
+                    route.settings.name == Routes.notesOverviewScreen),
+              );
+            },
+          );
+        },
+        buildWhen: (previous, current) => previous.isSaving != current.isSaving,
+        builder: (context, state) {
+          return Stack(
+            children: [
+              const NoteFormScreenScaffold(),
+              const SavingInProgressOverlay(),
+            ],
+          );
+        },
+      ),
+    );
+  }
+}
+
+class SavingInProgressOverlay extends StatelessWidget {
+  const SavingInProgressOverlay({
+    Key key,
+  }) : super(key: key);
+
+  @override
+  Widget build(BuildContext context) {
     return Container();
+  }
+}
+
+class NoteFormScreenScaffold extends StatelessWidget {
+  const NoteFormScreenScaffold({
+    Key key,
+  }) : super(key: key);
+
+  @override
+  Widget build(BuildContext context) {
+    return Scaffold(
+      appBar: AppBar(
+        title: BlocBuilder<NoteFormBloc, NoteFormState>(
+          buildWhen: (p, c) => p.isEditing != c.isEditing,
+          builder: (context, state) {
+            return Text(state.isEditing ? 'Edit note' : 'Create note');
+          },
+        ),
+        actions: [
+          IconButton(
+            icon: const Icon(Icons.check),
+            onPressed: () {
+              context.bloc<NoteFormBloc>().add(const NoteFormEvent.saved());
+            },
+          ),
+        ],
+        elevation: 0.0,
+      ),
+    );
   }
 }
