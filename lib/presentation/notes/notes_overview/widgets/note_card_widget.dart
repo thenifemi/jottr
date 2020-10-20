@@ -1,11 +1,13 @@
-import 'package:Jottr/application/notes/note_actor/note_actor_bloc.dart';
-import 'package:Jottr/domain/notes/todo_item.dart';
-import 'package:Jottr/presentation/core/colors.dart';
+import 'package:Jottr/presentation/routes/router.gr.dart';
+import 'package:auto_route/auto_route.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter_bloc/flutter_bloc.dart';
 import 'package:kt_dart/kt.dart';
 
+import '../../../../application/notes/note_actor/note_actor_bloc.dart';
 import '../../../../domain/notes/note.dart';
+import '../../../../domain/notes/todo_item.dart';
+import '../../../core/colors.dart';
 
 class NoteCard extends StatelessWidget {
   final Note note;
@@ -21,7 +23,7 @@ class NoteCard extends StatelessWidget {
       color: note.color.getOrCrash(),
       child: InkWell(
         onTap: () {
-          //TODO: Implement Navigation
+          ExtendedNavigator.of(context).pushNoteFormScreen(editednote: note);
         },
         onLongPress: () {
           final noteActorBloc = context.bloc<NoteActorBloc>();

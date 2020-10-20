@@ -1,5 +1,6 @@
-import 'package:Jottr/domain/notes/note.dart';
 import 'package:flutter/material.dart';
+
+import '../../../domain/notes/note.dart';
 
 class NoteFormScreen extends StatelessWidget {
   final Note editednote;
