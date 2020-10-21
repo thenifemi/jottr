@@ -68,6 +68,35 @@ class NoteFormScreen extends StatelessWidget {
   }
 }
 
+class NoteFormScreenScaffold extends StatelessWidget {
+  const NoteFormScreenScaffold({
+    Key key,
+  }) : super(key: key);
+
+  @override
+  Widget build(BuildContext context) {
+    return Scaffold(
+      appBar: AppBar(
+        title: BlocBuilder<NoteFormBloc, NoteFormState>(
+          buildWhen: (p, c) => p.isEditing != c.isEditing,
+          builder: (context, state) {
+            return Text(state.isEditing ? 'Edit note' : 'Create note');
+          },
+        ),
+        actions: [
+          IconButton(
+            icon: const Icon(Icons.check),
+            onPressed: () {
+              context.bloc<NoteFormBloc>().add(const NoteFormEvent.saved());
+            },
+          ),
+        ],
+        elevation: 0.0,
+      ),
+    );
+  }
+}
+
 class SavingInProgressOverlay extends StatelessWidget {
   final bool isSaving;
   const SavingInProgressOverlay({
@@ -96,35 +125,6 @@ class SavingInProgressOverlay extends StatelessWidget {
             ],
           ),
         ),
-      ),
-    );
-  }
-}
-
-class NoteFormScreenScaffold extends StatelessWidget {
-  const NoteFormScreenScaffold({
-    Key key,
-  }) : super(key: key);
-
-  @override
-  Widget build(BuildContext context) {
-    return Scaffold(
-      appBar: AppBar(
-        title: BlocBuilder<NoteFormBloc, NoteFormState>(
-          buildWhen: (p, c) => p.isEditing != c.isEditing,
-          builder: (context, state) {
-            return Text(state.isEditing ? 'Edit note' : 'Create note');
-          },
-        ),
-        actions: [
-          IconButton(
-            icon: const Icon(Icons.check),
-            onPressed: () {
-              context.bloc<NoteFormBloc>().add(const NoteFormEvent.saved());
-            },
-          ),
-        ],
-        elevation: 0.0,
       ),
     );
   }
