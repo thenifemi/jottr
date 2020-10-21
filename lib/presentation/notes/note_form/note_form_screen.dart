@@ -1,4 +1,5 @@
 import 'package:Jottr/presentation/core/colors.dart';
+import 'package:Jottr/presentation/notes/note_form/widgets/body_field_widget.dart';
 import 'package:auto_route/auto_route.dart';
 import 'package:dartz/dartz.dart';
 import 'package:flushbar/flushbar.dart';
@@ -92,6 +93,23 @@ class NoteFormScreenScaffold extends StatelessWidget {
           ),
         ],
         elevation: 0.0,
+      ),
+      body: BlocBuilder<NoteFormBloc, NoteFormState>(
+        buildWhen: (previous, current) =>
+            previous.showErrorMessages != current.showErrorMessages,
+        builder: (context, state) {
+          return Form(
+            // ignore: deprecated_member_use
+            autovalidate: state.showErrorMessages,
+            child: SingleChildScrollView(
+              child: Column(
+                children: [
+                  const BodyField(),
+                ],
+              ),
+            ),
+          );
+        },
       ),
     );
   }
