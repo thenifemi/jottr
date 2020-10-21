@@ -1,5 +1,6 @@
 import 'package:Jottr/presentation/core/colors.dart';
 import 'package:Jottr/presentation/notes/note_form/widgets/body_field_widget.dart';
+import 'package:Jottr/presentation/notes/note_form/widgets/color_field_widget.dart';
 import 'package:auto_route/auto_route.dart';
 import 'package:dartz/dartz.dart';
 import 'package:flushbar/flushbar.dart';
@@ -105,6 +106,7 @@ class NoteFormScreenScaffold extends StatelessWidget {
               child: Column(
                 children: [
                   const BodyField(),
+                  const ColorField(),
                 ],
               ),
             ),
