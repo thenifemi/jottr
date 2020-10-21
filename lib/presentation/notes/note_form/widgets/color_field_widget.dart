@@ -27,13 +27,27 @@ class ColorField extends StatelessWidget {
               },
               itemBuilder: (context, i) {
                 final itemColor = NoteColor.predefinedColors[i];
-                return Material(
-                  color: itemColor,
-                  elevation: 4.0,
-                  shape: const CircleBorder(side: BorderSide(width: 1.5)),
-                  child: const SizedBox(
-                    width: 60.0,
-                    height: 60.0,
+                return GestureDetector(
+                  onTap: () {
+                    context
+                        .bloc<NoteFormBloc>()
+                        .add(NoteFormEvent.colorChanged(itemColor));
+                  },
+                  child: Material(
+                    color: itemColor,
+                    elevation: 4.0,
+                    shape: CircleBorder(
+                      side: state.note.color.value.fold(
+                        (_) => BorderSide.none,
+                        (color) => color == itemColor
+                            ? const BorderSide(width: 1.5)
+                            : BorderSide.none,
+                      ),
+                    ),
+                    child: const SizedBox(
+                      width: 60.0,
+                      height: 60.0,
+                    ),
                   ),
                 );
               },
