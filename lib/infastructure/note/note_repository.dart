@@ -25,7 +25,7 @@ class NoteRepository implements INoteRepository {
       await userDoc.noteCollection.doc(noteDTO.id).set(noteDTO.toJson());
 
       return right(unit);
-    } on PlatformException catch (e) {
+    } on FirebaseException catch (e) {
       if (e.message.contains('PERMISSION_DENIED')) {
         return left(const NoteFailure.insufficientPermissions());
       } else {
@@ -45,7 +45,7 @@ class NoteRepository implements INoteRepository {
 
       return right(unit);
     } on PlatformException catch (e) {
-      if (e is PlatformException && e.message.contains('PERMISSION_DENIED')) {
+      if (e is FirebaseException && e.message.contains('PERMISSION_DENIED')) {
         return left(const NoteFailure.insufficientPermissions());
       } else if (e.message.contains('NOT_FOUND')) {
         return left(const NoteFailure.unableToUpdate());
@@ -66,7 +66,7 @@ class NoteRepository implements INoteRepository {
 
       return right(unit);
     } on PlatformException catch (e) {
-      if (e is PlatformException && e.message.contains('PERMISSION_DENIED')) {
+      if (e is FirebaseException && e.message.contains('PERMISSION_DENIED')) {
         return left(const NoteFailure.insufficientPermissions());
       } else if (e.message.contains('NOT_FOUND')) {
         return left(const NoteFailure.unableToUpdate());
@@ -91,7 +91,7 @@ class NoteRepository implements INoteRepository {
           ),
         )
         .handleError((e) {
-      if (e is PlatformException && e.message.contains('PERMISSION_DENIED')) {
+      if (e is FirebaseException && e.message.contains('PERMISSION_DENIED')) {
         return left(const NoteFailure.insufficientPermissions());
       } else {
         //log error
@@ -116,7 +116,7 @@ class NoteRepository implements INoteRepository {
                   .toImmutableList(),
             ))
         .handleError((e) {
-      if (e is PlatformException && e.message.contains('PERMISSION_DENIED')) {
+      if (e is FirebaseException && e.message.contains('PERMISSION_DENIED')) {
         return left(const NoteFailure.insufficientPermissions());
       } else {
         //log error

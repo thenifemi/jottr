@@ -7,7 +7,7 @@ import 'injection.dart';
 import 'presentation/core/app_widget.dart';
 
 // ignore: avoid_void_async
-void main() async {
+Future<void> main() async {
   WidgetsFlutterBinding.ensureInitialized();
   SystemChrome.setPreferredOrientations(
       [DeviceOrientation.portraitUp, DeviceOrientation.portraitDown]);
