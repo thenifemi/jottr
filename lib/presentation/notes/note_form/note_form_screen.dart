@@ -1,20 +1,19 @@
-import 'package:Jottr/presentation/core/colors.dart';
-import 'package:Jottr/presentation/notes/note_form/misc/todo_item_presentation_classes.dart';
-import 'package:Jottr/presentation/notes/note_form/widgets/add_todo_tile_widget.dart';
-import 'package:Jottr/presentation/notes/note_form/widgets/body_field_widget.dart';
-import 'package:Jottr/presentation/notes/note_form/widgets/color_field_widget.dart';
 import 'package:auto_route/auto_route.dart';
 import 'package:dartz/dartz.dart';
 import 'package:flushbar/flushbar.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter_bloc/flutter_bloc.dart';
-
-import 'package:Jottr/application/notes/note_form/note_form_bloc.dart';
-import 'package:Jottr/injection.dart';
-import 'package:Jottr/presentation/routes/router.gr.dart';
 import 'package:provider/provider.dart';
 
+import '../../../application/notes/note_form/note_form_bloc.dart';
 import '../../../domain/notes/note.dart';
+import '../../../injection.dart';
+import '../../core/colors.dart';
+import '../../routes/router.gr.dart';
+import 'misc/todo_item_presentation_classes.dart';
+import 'widgets/add_todo_tile_widget.dart';
+import 'widgets/body_field_widget.dart';
+import 'widgets/color_field_widget.dart';
 
 class NoteFormScreen extends StatelessWidget {
   final Note editednote;
