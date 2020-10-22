@@ -1,4 +1,6 @@
 import 'package:Jottr/presentation/core/colors.dart';
+import 'package:Jottr/presentation/notes/note_form/misc/todo_item_presentation_classes.dart';
+import 'package:Jottr/presentation/notes/note_form/widgets/add_todo_tile_widget.dart';
 import 'package:Jottr/presentation/notes/note_form/widgets/body_field_widget.dart';
 import 'package:Jottr/presentation/notes/note_form/widgets/color_field_widget.dart';
 import 'package:auto_route/auto_route.dart';
@@ -10,6 +12,7 @@ import 'package:flutter_bloc/flutter_bloc.dart';
 import 'package:Jottr/application/notes/note_form/note_form_bloc.dart';
 import 'package:Jottr/injection.dart';
 import 'package:Jottr/presentation/routes/router.gr.dart';
+import 'package:provider/provider.dart';
 
 import '../../../domain/notes/note.dart';
 
@@ -99,15 +102,19 @@ class NoteFormScreenScaffold extends StatelessWidget {
         buildWhen: (previous, current) =>
             previous.showErrorMessages != current.showErrorMessages,
         builder: (context, state) {
-          return Form(
-            // ignore: deprecated_member_use
-            autovalidate: state.showErrorMessages,
-            child: SingleChildScrollView(
-              child: Column(
-                children: [
-                  const BodyField(),
-                  const ColorField(),
-                ],
+          return ChangeNotifierProvider(
+            create: (_) => FormTodos(),
+            child: Form(
+              // ignore: deprecated_member_use
+              autovalidate: state.showErrorMessages,
+              child: SingleChildScrollView(
+                child: Column(
+                  children: [
+                    const BodyField(),
+                    const ColorField(),
+                    const AddTodoTile(),
+                  ],
+                ),
               ),
             ),
           );
