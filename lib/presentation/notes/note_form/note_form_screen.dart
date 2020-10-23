@@ -1,3 +1,4 @@
+import 'package:Jottr/presentation/notes/note_form/widgets/todo_list_widget.dart';
 import 'package:auto_route/auto_route.dart';
 import 'package:dartz/dartz.dart';
 import 'package:flushbar/flushbar.dart';
@@ -111,6 +112,7 @@ class NoteFormScreenScaffold extends StatelessWidget {
                   children: [
                     const BodyField(),
                     const ColorField(),
+                    const TodoList(),
                     const AddTodoTile(),
                   ],
                 ),
