@@ -33,7 +33,7 @@ class AppWidget extends StatelessWidget {
               ),
             ),
           ),
-          builder: ExtendedNavigator(
+          builder: ExtendedNavigator.builder(
             router: MyRouter(),
           )),
     );
