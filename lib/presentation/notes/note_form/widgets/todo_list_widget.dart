@@ -1,4 +1,3 @@
-import 'package:Jottr/domain/notes/value_objects.dart';
 import 'package:flushbar/flushbar.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter_bloc/flutter_bloc.dart';
@@ -8,6 +7,7 @@ import 'package:kt_dart/kt.dart';
 import 'package:provider/provider.dart';
 
 import '../../../../application/notes/note_form/note_form_bloc.dart';
+import '../../../../domain/notes/value_objects.dart';
 import '../../../core/colors.dart';
 import '../misc/build_context_x.dart';
 import '../misc/todo_item_presentation_classes.dart';
